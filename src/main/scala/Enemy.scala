@@ -1,5 +1,5 @@
-trait Enemy {
-    val nombre: String
+trait EnemyTrait {
+    val name: String
     var healthPoints: Double
     val attack: Double
     val defense: Double

@@ -1,5 +1,7 @@
+import characters.CharacterTrait
+
 trait PartyTrait {
-    def addCharacter(x: Character): Unit
+    def addCharacter(x: CharacterTrait): Unit
     def isDefeated(): Boolean
 }
 

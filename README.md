@@ -13,14 +13,14 @@ This project is licensed under the
 
 ### Character
 
-Characters are the fighters in combats. There are different types of characters: common, magical and enemies. The player controls common and magical characters. Common and magical characters contain an equiped weapon (if applicable), health points, defense, attack, weight and a list of weapons they can use. Enemies are considered characters: they are different because they can not wear weapons, but in the program they have an auxiliary weapon with a default attack
+Characters are the fighters in combats. There are different types of characters: common, magical and enemies. The player controls common and magical characters. Common and magical characters contain an equiped weapon (if applicable), name, health points, defense, weight and a list of weapons they can use. Enemies are considered characters (this avoids code duplication, even if they use different traits): they are different because they can not wear weapons, but in the program they have an auxiliary weapon with a default attack
 
 ### Party
 
 Each party is composed of zero or more characters. At the beginning of each turn the program checks whether both the player party and the enemy party have at least one living characters. If it is not the case, the combat ends. Else, the combat continues.
 
 A party is modeled using a class with:
-* An array of characters
+* A list of characters
 * A method for knowing if the party is defeated or not
 
 ### Weapon

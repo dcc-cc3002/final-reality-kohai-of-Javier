@@ -1,5 +1,7 @@
+import characters.WhiteMage
+
 class WhiteMageTest extends munit.FunSuite {
-    var testWhiteMage = Option[WhiteMage] = None
+    var testWhiteMage: Option[WhiteMage] = None
 
     test("Constructor test") {
         testWhiteMage = Some(new WhiteMage("WhiteMage 1", 100.0, 50.0, 70.1, 200))
@@ -11,7 +13,7 @@ class WhiteMageTest extends munit.FunSuite {
         assertEquals(whiteMage.weight, 70.1)
         assertEquals(whiteMage.manaPoints, 200.0)
 
-        assertEquals(testWhiteMage.weapon, None)
+        assertEquals(whiteMage.weapon, None)
 
     }
 

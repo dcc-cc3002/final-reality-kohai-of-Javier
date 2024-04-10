@@ -1,5 +1,7 @@
+import characters.Warrior
+
 class WarriorTest extends munit.FunSuite {
-    var testWarrior = Option[Warrior] = None
+    var testWarrior: Option[Warrior] = None
 
     test("Constructor test") {
         testWarrior = Some(new Warrior("Warrior 1", 100.0, 50.0, 70.1))
@@ -10,6 +12,7 @@ class WarriorTest extends munit.FunSuite {
         assertEquals(warrior.defense, 50.0)
         assertEquals(warrior.weight, 70.1)
 
-        assertEquals(testWarrior.weapon, None)
+        assertEquals(warrior.weapon, None)
+    }
 
 }

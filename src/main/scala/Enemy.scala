@@ -1,7 +1,7 @@
 import weapons.{Weapon, AuxiliaryWeapon}
 import characters.CharacterTrait
 
-/** The trait for an enemy
+/** The trait for an enemy.
  * An enemy is a character opposing to the player's party.
  * Each enemy has a name, health points, attack, defense and a weight
  * In this case it's attack is implemented using a Weapon, this if for making the implementation of combats easier

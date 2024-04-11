@@ -1,7 +1,7 @@
 import scala.collection.mutable.ArrayBuffer
 import characters.CharacterTrait
 
-/** Class for a Party
+/** Class for a Party.
  * It could be either the player's party or the enemy party
  *
  * @param warriors An array of Characters. If no array is given, then an empty array is created by default

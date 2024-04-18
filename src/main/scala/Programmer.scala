@@ -1,18 +1,18 @@
 import characters.CharacterTrait
-import scala.collections.mutable
+import scala.collection.mutable
 
 /** Trait for the turns programmer, it determines which character plays next.
 *
 */
 trait Programmer {
-    def addCharacter(val newCharacter: CharacterTrait): Unit
-    def removeCharacter(val toRemove: CharacterTrait): Unit
+    def addCharacter(newCharacter: CharacterTrait): Unit
+    def removeCharacter(toRemove: CharacterTrait): Unit
     def maxActionBar(): Double
-    def restartActionBar(val toRestart: CharacterTrait): Unit
-    def augmentActionBar(val howMuch: Double): Unit
-    def completedActionBar(val myCharacter: CharacterTrait): Unit
-    def throwCompleteCharacters(): Seq[CharacterTrait]
+    def restartActionBar(toRestart: CharacterTrait): Unit
+    def augmentActionBar(howMuch: Double): Unit
+    def completedActionBar(myCharacter: CharacterTrait): Unit
+    def throwCompleteCharacters(): mutable.Iterable[CharacterTrait]
     def selectCharacter(): CharacterTrait
-    val actionBar: Seq[Double]
-
+    var charactersAdded: mutable.Iterable[Double]
+    var actionBar: mutable.Iterable[Double]
 }

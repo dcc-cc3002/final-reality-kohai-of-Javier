@@ -2,8 +2,11 @@ package characters
 
 /** Abstract class for a Common Character.
  * Concrete classes for Common Characters are Paladin, Ninja and Warrior
- * @see AbstractCharacter
+ * @param name The name of the character
+ * @param healthPoints The number of initial health points of the character
+ * @param defense The defense of the character
+ * @param weight The weight of the character
  */
-abstract class CommonCharacter(name: String, healthPoints: Double, defense: Double, weight: Double) extends AbstractCharacter(name, healthPoints, defense, weight) {
+abstract class CommonCharacter(val name: String, var healthPoints: Double, val defense: Double, val weight: Double) extends CharacterTrait {
 
 }

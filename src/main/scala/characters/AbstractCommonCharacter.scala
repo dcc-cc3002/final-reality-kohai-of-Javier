@@ -7,6 +7,6 @@ package characters
  * @param defense The defense of the character
  * @param weight The weight of the character
  */
-abstract class CommonCharacter(val name: String, var healthPoints: Double, val defense: Double, val weight: Double) extends CharacterTrait {
+abstract class CommonCharacter(name: String, healthPoints: Double, defense: Double, weight: Double) extends AbstractCharacter(name, healthPoints, defense, weight) {
 
 }

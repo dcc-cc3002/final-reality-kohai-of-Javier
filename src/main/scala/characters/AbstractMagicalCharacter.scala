@@ -5,6 +5,6 @@ package characters
  * There are two concrete classes for magical characters: BlackMage and WhiteMage
  * @see AbstractCharacter
  */
-abstract class AbstractMagicalCharacter(name: String, healthPoints: Double, defense: Double, weight: Double, var manaPoints: Double) extends AbstractCharacter(name, healthPoints, defense, weight) with MagicalCharacter {
+abstract class AbstractMagicalCharacter(name: String, healthPoints: Double, defense: Double, weight: Double, var manaPoints: Double) extends AbstractWCharacter(name, healthPoints, defense, weight) with MagicalCharacter {
 
 }

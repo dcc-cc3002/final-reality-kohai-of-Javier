@@ -1,5 +1,5 @@
 package characters
 
-trait MagicalCharacter extends CharacterTrait {
+trait MagicalCharacter extends WCharacter {
     var manaPoints: Double
 }

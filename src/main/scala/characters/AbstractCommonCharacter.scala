@@ -7,6 +7,6 @@ package characters
  * @param defense The defense of the character
  * @param weight The weight of the character
  */
-abstract class CommonCharacter(name: String, healthPoints: Double, defense: Double, weight: Double) extends AbstractCharacter(name, healthPoints, defense, weight) {
+abstract class CommonCharacter(name: String, healthPoints: Double, defense: Double, weight: Double) extends AbstractWCharacter(name, healthPoints, defense, weight) {
 
 }

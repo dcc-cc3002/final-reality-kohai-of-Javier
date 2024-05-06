@@ -1,7 +1,7 @@
-import scala.collection.mutable.HashMap
+import scala.collection.mutable.{Map, HashMap}
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.immutable.List
-import characters.CharacterTrait
+import characters.TCharacter
 
 /** Task programmer class that assigns the character to play in any given moment.*/
 class Assigner extends Programmer {
@@ -9,19 +9,19 @@ class Assigner extends Programmer {
         The first element stores the current value of the action bar (when a new character is added it starts at 0).
         The second element stores the character itself.
     */
-    private var added: HashMap[CharacterTrait, Double] = HashMap()
+    private var added: Map[TCharacter, Double] = HashMap()
 
     /** Adds a character to the task programmer.
         @param newCharacter The character to be added
     */
-    def addCharacter(newCharacter: CharacterTrait): Unit = {
+    def addCharacter(newCharacter: TCharacter): Unit = {
         added.addOne(newCharacter -> 0.0)
     }
 
     /** Removes a character from the task programmer.
         @param toRemove The character to be removed
     */
-    def removeCharacter(toRemove: CharacterTrait): Unit = {
+    def removeCharacter(toRemove: TCharacter): Unit = {
         added.remove(toRemove)
     }
 
@@ -38,7 +38,7 @@ class Assigner extends Programmer {
     /** Restarts the action bar of each character
         @param toRestart The character whose action bar must be restarted
     */
-    def restartActionBar(toRestart: CharacterTrait): Unit = {
+    def restartActionBar(toRestart: TCharacter): Unit = {
         added.update(toRestart, 0.0)
     }
 
@@ -52,19 +52,19 @@ class Assigner extends Programmer {
     /** Indicates whether a character completed their action bar.
         @param myCharacter The character whose action bar we want to know is completed
     */
-    def completedActionBar(myCharacter: CharacterTrait): Boolean = {
-        added.apply(myCharacter) >= myCharacter.maxActionBar()
+    def completedActionBar(myCharacter: TCharacter): Boolean = {
+        added.apply(myCharacter) >= myCharacter.fullActionBar()
     }
 
     /** Delivers all characters who completed their action bar, in non-increasing order of the difference between the current value of the action bar and the expected value of the action bar.
         The function returns a list with each character who completed their action bar.
     */
-    def throwCompleteCharacters(): List[CharacterTrait] = {
+    def throwCompleteCharacters(): List[TCharacter] = {
         //buffer contains all the complete characters
-        var buffer: ArrayBuffer[(Double, CharacterTrait)] = ArrayBuffer()
+        var buffer: ArrayBuffer[(Double, TCharacter)] = ArrayBuffer()
         for((c, v) <- added) {
-            if(v >= c.maxActionBar()) {
-                buffer.addOne((v-c.maxActionBar(), c))
+            if(v >= c.fullActionBar()) {
+                buffer.addOne((v-c.fullActionBar(), c))
             }
         }
 
@@ -72,7 +72,7 @@ class Assigner extends Programmer {
         buffer.sortInPlaceWith((A, B) => A._1 > B._1)
 
         //newBuffer is like buffer but without the values of the action bar
-        var newBuffer: ArrayBuffer[CharacterTrait] = ArrayBuffer()
+        var newBuffer: ArrayBuffer[TCharacter] = ArrayBuffer()
         for((v, c) <- buffer) {
             newBuffer.addOne(c)
         }
@@ -80,14 +80,14 @@ class Assigner extends Programmer {
     }
 
     /** Indicates the only character who plays the turn.*/
-    def selectCharacter(): CharacterTrait = {
-        val allCompleteCharacters: List[CharacterTrait] = throwCompleteCharacters()
+    def selectCharacter(): TCharacter = {
+        val allCompleteCharacters: List[TCharacter] = throwCompleteCharacters()
         allCompleteCharacters.head
     }
 
     /** Returns a list of all characters added to the task programmer, with the current value of their action bar.*/
-    def getCharacters(): List[(Double, CharacterTrait)] = {
-        val buffer: ArrayBuffer[(Double, CharacterTrait)] = ArrayBuffer()
+    def getCharacters(): List[(Double, TCharacter)] = {
+        val buffer: ArrayBuffer[(Double, TCharacter)] = ArrayBuffer()
         for((k, v) <- added) {
             buffer.addOne((v, k))
         }

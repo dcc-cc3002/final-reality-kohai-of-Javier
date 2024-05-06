@@ -1,4 +1,4 @@
-import characters.CharacterTrait
+import characters.TCharacter
 import scala.collection.mutable
 import scala.collection.immutable.List
 
@@ -12,16 +12,18 @@ import scala.collection.immutable.List
 * @param throwCompleteCharacters Delivers all characters who completed their action bar, in non-increasing order
 * @param selectCharacter Indicates the only character who plays the turn
 * @param getCharacters Returns a list of all characters added to the task programmer, with the current value of their action bar.
+*
+* @see Assigner
 */
 trait Programmer {
-    def addCharacter(newCharacter: CharacterTrait): Unit
-    def removeCharacter(toRemove: CharacterTrait): Unit
+    def addCharacter(newCharacter: TCharacter): Unit
+    def removeCharacter(toRemove: TCharacter): Unit
     def maxActionBar(): Double
-    def restartActionBar(toRestart: CharacterTrait): Unit
+    def restartActionBar(toRestart: TCharacter): Unit
     def augmentActionBar(howMuch: Double): Unit
-    def completedActionBar(myCharacter: CharacterTrait): Boolean
-    def throwCompleteCharacters(): List[CharacterTrait]
-    def selectCharacter(): CharacterTrait
+    def completedActionBar(myCharacter: TCharacter): Boolean
+    def throwCompleteCharacters(): List[TCharacter]
+    def selectCharacter(): TCharacter
 
-    def getCharacters(): List[(Double, CharacterTrait)]
+    def getCharacters(): List[(Double, TCharacter)]
 }

@@ -1,5 +1,5 @@
 import weapons.{Weapon, AuxiliaryWeapon}
-import characters.CharacterTrait
+import characters.TCharacter
 
 /** The trait for an enemy.
  * An enemy is a character opposing to the player's party.
@@ -12,8 +12,11 @@ import characters.CharacterTrait
  * @param defense The defense of the enemy. It must be >= 0
  * @param weight The weight of the enemy. It must be >= 0
  */
-class Enemy(val name: String, var healthPoints: Double, val attack: Double, val defense: Double, val weight: Double) extends CharacterTrait {
-    var weapon: Option[Weapon] = Some(new AuxiliaryWeapon("attack", attack, 0, this))
+class Enemy(val name: String, var healthPoints: Double, val attack: Double, val defense: Double, val weight: Double) extends TCharacter {
+    /** Returns the value of the action bar to be attained for the enemy to attack.*/
+    def fullActionBar(): Double = weight
 
-    def maxActionBar(): Double = weight
+    /** Returns the number of current health points.*/
+    def getHealthPoints(): Double = healthPoints
+
 }

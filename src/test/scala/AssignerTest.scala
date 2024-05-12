@@ -1,10 +1,10 @@
 import scala.collection.mutable
-import characters.CharacterTrait
+import characters.TCharacter
 import characters.Ninja
 
 class AssignerTest extends munit.FunSuite {
     var testAssigner: Programmer = new Assigner()
-    val testNinja: CharacterTrait = new Ninja("Ninja 1", 100.0, 50.0, 70.1)
+    val testNinja: TCharacter = new Ninja("Ninja 1", 100, 50, 70)
 
     override def beforeEach(context: BeforeEach): Unit = {
         testAssigner = new Assigner()
@@ -12,83 +12,86 @@ class AssignerTest extends munit.FunSuite {
     }
 
     test("Add character") {
-        val charactersList: List[(Double, CharacterTrait)] = testAssigner.getCharacters()
+        val charactersList: List[(Int, TCharacter)] = testAssigner.getCharacters()
         assertEquals(charactersList.isEmpty, false)
     }
 
     test("Remove character") {
         testAssigner.removeCharacter(testNinja)
 
-        val charactersList: List[(Double, CharacterTrait)] = testAssigner.getCharacters()
+        val charactersList: List[(Int, TCharacter)] = testAssigner.getCharacters()
         assertEquals(charactersList.isEmpty, true)
     }
 
     test("Augment Action Bar") {
-        //Test 1
+        //Test
         testAssigner.augmentActionBar(10)
 
-        val charactersList: List[(Double, CharacterTrait)] = testAssigner.getCharacters()
-        assertEquals(charactersList.head._1, 10.0)
+        val charactersList: List[(Int, TCharacter)] = testAssigner.getCharacters()
+        assertEquals(charactersList.head._1, 10)
     }
 
     test("Max action bar") {
-        //Test 1
-        assertEquals(testAssigner.maxActionBar, 0.0)
+        //Test
+        assertEquals(testAssigner.maxActionBar, 0)
 
         //Test 2
         testAssigner.augmentActionBar(10)
-        assertEquals(testAssigner.maxActionBar, 10.0)
+        assertEquals(testAssigner.maxActionBar, 10)
 
         //Test 3
-        testAssigner.addCharacter(new Ninja("Ninja 2", 100.0, 50.0, 70.1))
-        testAssigner.augmentActionBar(20)
-        assertEquals(testAssigner.maxActionBar, 30.0)
+        testAssigner.addCharacter(new Ninja("Ninja 2", 100, 50, 70))
+        testAssigner.augmentActionBar(10)
+        assertEquals(testAssigner.maxActionBar, 20)
     }
 
     test("Restart action bar") {
         testAssigner.augmentActionBar(10)
         testAssigner.restartActionBar(testNinja)
 
-        assertEquals(testAssigner.maxActionBar, 0.0)
+        assertEquals(testAssigner.maxActionBar, 0)
     }
 
     test("Completed action bar") {
-        //Test 1
+        //Test
         assertEquals(testAssigner.completedActionBar(testNinja), false)
 
         //Test 2
-        testAssigner.augmentActionBar(testNinja.maxActionBar)
+        testAssigner.augmentActionBar(testNinja.fullActionBar)
         assertEquals(testAssigner.completedActionBar(testNinja), true)
     }
 
     test("Throw complete characters") {
+        //Test
+        val testNinja2: TCharacter = new Ninja("Ninja 2", 100, 50, 70)
+        val testNinja3: TCharacter = new Ninja("Ninja 3", 100, 50, 70)
         testAssigner.augmentActionBar(10)
-        testAssigner.addCharacter(new Ninja("Ninja 2", 100.0, 50.0, 70.1))
+        testAssigner.addCharacter(testNinja2)
         testAssigner.augmentActionBar(20)
-        testAssigner.addCharacter(new Ninja("Ninja 3", 100.0, 50.0, 70.1))
-        var completeCharacters: List[CharacterTrait] = testAssigner.throwCompleteCharacters
+        testAssigner.addCharacter(testNinja3)
+        var completeCharacters: List[TCharacter] = testAssigner.throwCompleteCharacters
 
         assertEquals(completeCharacters.isEmpty, true)
 
-        testAssigner.augmentActionBar(50)
+        //Test 2
+        testAssigner.augmentActionBar(60)
         completeCharacters = testAssigner.throwCompleteCharacters
-        assertEquals(completeCharacters.size, 1)
-        assertEquals(completeCharacters.head, testNinja)
+        assertEquals(completeCharacters, List(testNinja, testNinja2))
     }
 
     test("Select character") {
         testAssigner.augmentActionBar(10)
-        testAssigner.addCharacter(new Ninja("Ninja 2", 100.0, 50.0, 70.1))
+        testAssigner.addCharacter(new Ninja("Ninja 2", 100, 50, 70))
         testAssigner.augmentActionBar(20)
-        testAssigner.addCharacter(new Ninja("Ninja 3", 100.0, 50.0, 70.1))
-        testAssigner.augmentActionBar(50)
+        testAssigner.addCharacter(new Ninja("Ninja 3", 100, 50, 70))
+        testAssigner.augmentActionBar(60)
 
-        val selected: CharacterTrait = testAssigner.selectCharacter
+        val selected: TCharacter = testAssigner.selectCharacter
         assertEquals(selected, testNinja)
     }
 
     test("Get characters") {
-        val charactersList: List[(Double, CharacterTrait)] = testAssigner.getCharacters
-        assertEquals((0.0, testNinja), charactersList.head)
+        val charactersList: List[(Int, TCharacter)] = testAssigner.getCharacters
+        assertEquals((0, testNinja), charactersList.head)
     }
 }

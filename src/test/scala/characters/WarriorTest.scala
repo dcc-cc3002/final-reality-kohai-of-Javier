@@ -1,18 +1,17 @@
+import characters.WCharacter
 import characters.Warrior
 
 class WarriorTest extends munit.FunSuite {
-    var testWarrior: Option[Warrior] = None
+    var testWarrior: Option[WCharacter] = None
 
     test("Constructor test") {
-        testWarrior = Some(new Warrior("Warrior 1", 100.0, 50.0, 70.1))
+        testWarrior = Some(new Warrior("Warrior", 100, 50, 70))
         assert(testWarrior.isDefined)
         val warrior = testWarrior.get
-        assertEquals(warrior.name, "Warrior 1")
-        assertEquals(warrior.healthPoints, 100.0)
-        assertEquals(warrior.defense, 50.0)
-        assertEquals(warrior.weight, 70.1)
-
-        assertEquals(warrior.weapon, None)
+        assertEquals(warrior.getName, "Warrior")
+        assertEquals(warrior.getHealthPoints, 100)
+        assertEquals(warrior.getDefense, 50)
+        assertEquals(warrior.getWeight, 70)
     }
 
 }

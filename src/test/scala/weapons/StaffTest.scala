@@ -1,18 +1,21 @@
 import weapons.Staff
+import weapons.MagicWeapon
 import characters.Paladin
 
+/** Test class for the Staff Weapon. */
 class StaffTest extends munit.FunSuite {
-    var testStaff: Option[Staff] = None
+    var testStaff: Option[MagicWeapon] = None
 
     test("Constructor test") {
-        val paladinOwner = new Paladin("Paladin 1", 100.0, 50.0, 70.1)
-        testStaff = Some(new Staff("Staff 1", 33.3, 44.4, 20.5, paladinOwner))
+        val paladinOwner = new Paladin("Paladin 1", 100, 50, 70)
+        testStaff = Some(new Staff("Staff", 30, 40, 10, paladinOwner))
         assert(testStaff.isDefined)
         val staff = testStaff.get
-        assertEquals(staff.name, "Staff 1")
-        assertEquals(staff.attackPoints, 33.3)
-        assertEquals(staff.weight, 20.5)
+        assertEquals(staff.getName, "Staff")
+        assertEquals(staff.getAttackPoints, 30)
+        assertEquals(staff.getMagicAttack, 40)
+        assertEquals(staff.getWeight, 10)
 
-        assertEquals(staff.owner, paladinOwner)
+        assertEquals(staff.getOwner, paladinOwner)
     }
 }

@@ -1,16 +1,16 @@
 package weapons
-import characters.CharacterTrait
+import characters.WCharacter
 
 /** Trait for Weapons
- * @param name Name of the weapon
- * @param attackPoints Number of attack points of the weapon
- * @param weight Weight of the weapon
- * @param owner Character that owns the weapon
+ * @param getName Returns the name of the weapon
+ * @param getAttackPoints Returns the number of attack points of the weapon
+ * @param getWeight Returns the weight of the weapon
+ * @param getOwner Getter for the character who owns the weapon
+ * For the implementation of these methods, @see AbstractWeapon
  */
 trait Weapon {
-    val name: String
-    val attackPoints: Double
-    val weight: Double
-
-    var owner: CharacterTrait
+    def getName(): String
+    def getAttackPoints(): Int
+    def getWeight(): Int
+    def getOwner(): WCharacter
 }

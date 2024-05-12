@@ -1,18 +1,20 @@
 import characters.Paladin
-import weapons.Wand
+import weapons.{MagicWeapon, Wand}
 
+/** Test class for the Wand Weapon. */
 class WandTest extends munit.FunSuite {
-    var testWand: Option[Wand] = None
+    var testWand: Option[MagicWeapon] = None
 
     test("Constructor test") {
-        val paladinOwner = new Paladin("Paladin 1", 100.0, 50.0, 70.1)
-        testWand = Some(new Wand("Wand 1", 33.3, 44.4, 20.5, paladinOwner))
+        val paladinOwner = new Paladin("Paladin 1", 100, 50, 70)
+        testWand = Some(new Wand("Wand", 30, 40, 10, paladinOwner))
         assert(testWand.isDefined)
         val wand = testWand.get
-        assertEquals(wand.name, "Wand 1")
-        assertEquals(wand.attackPoints, 33.3)
-        assertEquals(wand.weight, 20.5)
+        assertEquals(wand.getName, "Wand")
+        assertEquals(wand.getAttackPoints, 30)
+        assertEquals(wand.getMagicAttack, 40)
+        assertEquals(wand.getWeight, 10)
 
-        assertEquals(wand.owner, paladinOwner)
+        assertEquals(wand.getOwner, paladinOwner)
     }
 }

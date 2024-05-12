@@ -1,19 +1,17 @@
-import characters.BlackMage
+import characters.{MagicalCharacter, BlackMage}
 
 class BlackMageTest extends munit.FunSuite {
-    var testBlackMage: Option[BlackMage] = None
+    var testBlackMage: Option[MagicalCharacter] = None
 
-    test("Constructor test") {
-        testBlackMage = Some(new BlackMage("BlackMage 1", 100.0, 50.0, 70.1, 200))
+    test("Constructor and getters test") {
+        testBlackMage = Some(new BlackMage("BlackMage", 100, 50, 70, 40))
         assert(testBlackMage.isDefined)
         val blackMage = testBlackMage.get
-        assertEquals(blackMage.name, "BlackMage 1")
-        assertEquals(blackMage.healthPoints, 100.0)
-        assertEquals(blackMage.defense, 50.0)
-        assertEquals(blackMage.weight, 70.1)
-        assertEquals(blackMage.manaPoints, 200.0)
-
-        assertEquals(blackMage.weapon, None)
+        assertEquals(blackMage.getName, "BlackMage")
+        assertEquals(blackMage.getHealthPoints, 100)
+        assertEquals(blackMage.getDefense, 50)
+        assertEquals(blackMage.getWeight, 70)
+        assertEquals(blackMage.getManaPoints, 40)
 
     }
 

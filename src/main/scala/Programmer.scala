@@ -18,12 +18,12 @@ import scala.collection.immutable.List
 trait Programmer {
     def addCharacter(newCharacter: TCharacter): Unit
     def removeCharacter(toRemove: TCharacter): Unit
-    def maxActionBar(): Double
+    def maxActionBar(): Int
     def restartActionBar(toRestart: TCharacter): Unit
-    def augmentActionBar(howMuch: Double): Unit
+    def augmentActionBar(howMuch: Int): Unit
     def completedActionBar(myCharacter: TCharacter): Boolean
     def throwCompleteCharacters(): List[TCharacter]
     def selectCharacter(): TCharacter
 
-    def getCharacters(): List[(Double, TCharacter)]
+    def getCharacters(): List[(Int, TCharacter)]
 }

@@ -9,13 +9,13 @@ class Assigner extends Programmer {
         The first element stores the current value of the action bar (when a new character is added it starts at 0).
         The second element stores the character itself.
     */
-    private var added: Map[TCharacter, Double] = HashMap()
+    private var added: Map[TCharacter, Int] = HashMap()
 
     /** Adds a character to the task programmer.
         @param newCharacter The character to be added
     */
     def addCharacter(newCharacter: TCharacter): Unit = {
-        added.addOne(newCharacter -> 0.0)
+        added.addOne(newCharacter -> 0)
     }
 
     /** Removes a character from the task programmer.
@@ -26,10 +26,10 @@ class Assigner extends Programmer {
     }
 
     /** Calculates the maximum of the action bar from all characters.*/
-    def maxActionBar(): Double = {
-        var ans: Double = 0
+    def maxActionBar(): Int = {
+        var ans: Int = 0
         for((c, v) <- added) {
-            val action: Double = v
+            val action: Int = v
             if(ans < action) ans = v
         }
         ans
@@ -39,11 +39,11 @@ class Assigner extends Programmer {
         @param toRestart The character whose action bar must be restarted
     */
     def restartActionBar(toRestart: TCharacter): Unit = {
-        added.update(toRestart, 0.0)
+        added.update(toRestart, 0)
     }
 
     /** Increases the action bar of all characters by an arbitrary amount k.*/
-    def augmentActionBar(k: Double): Unit = {
+    def augmentActionBar(k: Int): Unit = {
         for((key, value) <- added) {
             added.addOne((key, value+k))
         }
@@ -61,7 +61,7 @@ class Assigner extends Programmer {
     */
     def throwCompleteCharacters(): List[TCharacter] = {
         //buffer contains all the complete characters
-        var buffer: ArrayBuffer[(Double, TCharacter)] = ArrayBuffer()
+        var buffer: ArrayBuffer[(Int, TCharacter)] = ArrayBuffer()
         for((c, v) <- added) {
             if(v >= c.fullActionBar()) {
                 buffer.addOne((v-c.fullActionBar(), c))
@@ -86,8 +86,8 @@ class Assigner extends Programmer {
     }
 
     /** Returns a list of all characters added to the task programmer, with the current value of their action bar.*/
-    def getCharacters(): List[(Double, TCharacter)] = {
-        val buffer: ArrayBuffer[(Double, TCharacter)] = ArrayBuffer()
+    def getCharacters(): List[(Int, TCharacter)] = {
+        val buffer: ArrayBuffer[(Int, TCharacter)] = ArrayBuffer()
         for((k, v) <- added) {
             buffer.addOne((v, k))
         }

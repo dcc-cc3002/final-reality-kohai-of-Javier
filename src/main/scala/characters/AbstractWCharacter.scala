@@ -7,25 +7,36 @@ import weapons.Weapon
  * @param defense The defense of the character
  * @param weight The weight of the character
  */
-abstract class AbstractWCharacter(val name: String, var healthPoints: Double, val defense: Double, val weight: Double) extends WCharacter {
+abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int, weight: Int) extends AbstractCharacter(name, healthPoints, defense, weight) with WCharacter {
     private var weapon: Option[Weapon] = None
 
-    /** Returns the expected value of the character's action bar.*/
-    def fullActionBar() = {
-        if(weapon.isDefined)
-            weight + 0.5*weapon.get.weight
-        else
-            weight
-    }
-
-    /** Returns the number of health points.*/
-    def getHealthPoints(): Double = healthPoints
-
-    /** Returns an Option with the current weapon the character carries, or none if it doesn't carry any.*/
+    /** Returns an Option with the current weapon the character carries.*/
     def getWeapon(): Option[Weapon] = weapon
 
     /** Setter of the weapon of the character.*/
     def setWeapon(newWeapon: Weapon): Unit = {
         weapon = Some(newWeapon)
+    }
+
+    /** Returns the expected value of the character's action bar.*/
+    def fullActionBar() = {
+        if(weapon.isDefined)
+            weight + weapon.get.getWeight/2
+        else
+            weight
+    }
+
+    /** Perform an attack on other character.
+        In this case, the attacker character must have a weapon equiped.
+        Otherwise, an exception is thrown.
+        @param other The character to be attacked
+    */
+    def attack(other: TCharacter): Unit = {
+        if(weapon.isDefined) {
+            other.receiveDamage(weapon.get.getAttackPoints)
+        }
+        else {
+            throw new Exception("No weapon carried by the attacker character")
+        }
     }
 }

@@ -1,18 +1,30 @@
-import characters.Paladin
-import weapons.Axe
+import characters.{Paladin, WCharacter}
+import weapons.{Axe, Weapon}
+import exceptions.InvalidStatException
 
+/** Test class for the Axe Weapon. */
 class AxeTest extends munit.FunSuite {
-    var testAxe: Option[Axe] = None
+    var testOwner: Option[WCharacter] = None
+    var testAxe: Option[Weapon] = None
+
+    override def beforeEach(context: BeforeEach) {
+        testOwner = Some(new Paladin("Paladin 1", 100, 50, 70))
+        testAxe = Some(new Axe("Axe",30, 10, testOwner.get))
+    }
 
     test("Constructor test") {
-        val paladinOwner = new Paladin("Paladin 1", 100.0, 50.0, 70.1)
-        testAxe = Some(new Axe("Axe 1", 33.3, 20.5, paladinOwner))
         assert(testAxe.isDefined)
         val axe = testAxe.get
-        assertEquals(axe.name, "Axe 1")
-        assertEquals(axe.attackPoints, 33.3)
-        assertEquals(axe.weight, 20.5)
+        assertEquals(axe.getName, "Axe")
+        assertEquals(axe.getAttackPoints,30)
+        assertEquals(axe.getWeight, 10)
 
-        assertEquals(axe.owner, paladinOwner)
+        assertEquals(axe.getOwner, testOwner.get)
+    }
+
+    test("Constructor test with an empty name") {
+        intercept[InvalidStatException] {
+            testAxe = Some(new Axe("", 30, 10, testOwner.get))
+        }
     }
 }

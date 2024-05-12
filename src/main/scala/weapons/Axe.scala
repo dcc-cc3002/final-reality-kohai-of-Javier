@@ -1,8 +1,8 @@
 package weapons
-import characters.CharacterTrait
+import characters.WCharacter
 
 /** Class for Axe ordinary weapon.
  * @see AbstractWeapon
  */
-class Axe(name: String, attackPoints: Double, weight: Double, owner: CharacterTrait) extends AbstractWeapon(name, attackPoints, weight, owner) {
+class Axe(name: String, attackPoints: Int, weight: Int, owner: WCharacter) extends AbstractWeapon(name, attackPoints, weight, owner) {
 }

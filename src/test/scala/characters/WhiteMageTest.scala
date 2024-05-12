@@ -1,20 +1,18 @@
+import characters.MagicalCharacter
 import characters.WhiteMage
 
 class WhiteMageTest extends munit.FunSuite {
-    var testWhiteMage: Option[WhiteMage] = None
+    var testWhiteMage: Option[MagicalCharacter] = None
 
     test("Constructor test") {
-        testWhiteMage = Some(new WhiteMage("WhiteMage 1", 100.0, 50.0, 70.1, 200))
+        testWhiteMage = Some(new WhiteMage("WhiteMage", 100, 50, 70, 40))
         assert(testWhiteMage.isDefined)
         val whiteMage = testWhiteMage.get
-        assertEquals(whiteMage.name, "WhiteMage 1")
-        assertEquals(whiteMage.healthPoints, 100.0)
-        assertEquals(whiteMage.defense, 50.0)
-        assertEquals(whiteMage.weight, 70.1)
-        assertEquals(whiteMage.manaPoints, 200.0)
-
-        assertEquals(whiteMage.weapon, None)
-
+        assertEquals(whiteMage.getName, "WhiteMage")
+        assertEquals(whiteMage.getHealthPoints, 100)
+        assertEquals(whiteMage.getDefense, 50)
+        assertEquals(whiteMage.getWeight, 70)
+        assertEquals(whiteMage.getManaPoints, 40)
     }
 
 }

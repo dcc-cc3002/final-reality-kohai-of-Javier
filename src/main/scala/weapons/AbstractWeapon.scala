@@ -14,6 +14,7 @@ abstract class AbstractWeapon(private val name: String, private val attackPoints
     if(name.isEmpty) throw new InvalidStatException("Name cannot be an empty string")
     Require.Stat(attackPoints, "attackPoints") atLeast 1
     Require.Stat(weight, "weight") atLeast 1
+    owner.setWeapon(this)
 
     /** Return the name of the weapon.*/
     def getName(): String = name

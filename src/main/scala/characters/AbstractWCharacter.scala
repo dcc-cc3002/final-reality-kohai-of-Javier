@@ -8,15 +8,10 @@ import weapons.Weapon
  * @param weight The weight of the character
  */
 abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int, weight: Int) extends AbstractCharacter(name, healthPoints, defense, weight) with WCharacter {
-    private var weapon: Option[Weapon] = None
+    protected var weapon: Option[Weapon] = None
 
     /** Returns an Option with the current weapon the character carries.*/
     def getWeapon(): Option[Weapon] = weapon
-
-    /** Setter of the weapon of the character.*/
-    def setWeapon(newWeapon: Weapon): Unit = {
-        weapon = Some(newWeapon)
-    }
 
     /** Returns the expected value of the character's action bar.*/
     def fullActionBar() = {

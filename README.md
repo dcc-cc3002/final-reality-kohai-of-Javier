@@ -52,7 +52,17 @@ The turn scheduler is implemented in the Assigner class, which extends the Progr
 
 ## Weapon compatiblity
 
-Each type of character can only wear certain kinds of weapons.
+Each type of character can only wear certain kinds of weapons. The type of weapon each type of characters can carry appears in the project statement. Weapon compatiblity is implemented using the double dispatch technique: for each character, there is a function in the trait Weapon to be implemented in the definition of each weapon class.
+
+## Exceptions
+
+### InvalidStatException
+
+This exception is thrown when a game statistic is not valid. For instance, when initializing a new character its initial hp is negative.
+
+### IncompatibleWeaponException
+
+This exception is thrown when a weapon is assigned to a character who is not compatible. See "Weapon compatiblity" for more details.
 
 ## Tests
 

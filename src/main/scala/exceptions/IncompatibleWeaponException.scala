@@ -14,6 +14,6 @@ package exceptions
  * // => IncompatibleWeaponException: An incompatible weapon was found -- A Bow can not be assigned to this character.
  * }}}
  *
- * @param details A descriptive message detailing the nature of the invalid stat.
+ * @param weapon The type of weapon that is tried to be equiped to an incompatible charater.
  */
 class IncompatibleWeaponException(weapon: String) extends Exception(s"An incompatible weapon was found -- A $weapon can not be assigned to this character.")

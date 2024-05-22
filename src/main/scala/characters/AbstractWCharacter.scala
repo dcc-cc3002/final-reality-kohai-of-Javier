@@ -1,5 +1,6 @@
 package characters
 import weapons.Weapon
+import exceptions.DoubleEquipmentException
 
 /** An abstract class for a Character with a weapon
  * @param name The name of the character
@@ -33,5 +34,10 @@ abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int,
         else {
             throw new Exception("No weapon carried by the attacker character")
         }
+    }
+
+    /** Throws a DoubleEquipmentException if the weapon has another owner.*/
+    protected def checkOwner(wp: Weapon): Unit = {
+        if(wp.getOwner != this) throw new DoubleEquipmentException(wp.getName, wp.getOwner.getName, name)
     }
 }

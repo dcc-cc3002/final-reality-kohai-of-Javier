@@ -72,6 +72,10 @@ This exception is thrown when a character attacks another character or an enemy 
 
 This exception is thrown when trying to add a character to a party that already reached the limit number of characters.
 
+### DoubleEquipmentException
+
+This exception is thrown when trying to equip a weapon already equipped to another character.
+
 ## Tests
 
 Tests for the AbstractWCharacter class are in the NinjaTest class. Tests for the AbstractWeapon class are in the AxeTest class.

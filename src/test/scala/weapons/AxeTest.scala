@@ -1,6 +1,6 @@
 import characters._
 import weapons.{Axe, Weapon}
-import exceptions.{InvalidStatException, IncompatibleWeaponException}
+import exceptions._
 
 /** Test class for the Axe Weapon. */
 class AxeTest extends munit.FunSuite {
@@ -21,6 +21,13 @@ class AxeTest extends munit.FunSuite {
         intercept[InvalidStatException] {
             val testAxe: Weapon = new Axe("", 30, 10, new Paladin("Paladin 1", 100, 50, 70))
         }
+    }
+
+    test("Set Axe to another owner") {
+        val testOwner1 = new Paladin("Paladin 1", 100, 50, 70)
+        val testOwner2 = new Paladin("Paladin 2", 100, 50, 70)
+        val testAxe = new Axe("Axe", 30, 10, testOwner1)
+        intercept[DoubleEquipmentException](testOwner2.setWeapon(testAxe))
     }
 
     private def assertCompatibleWeapon(testOwner: WCharacter): Unit = {

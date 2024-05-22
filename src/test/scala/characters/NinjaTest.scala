@@ -47,7 +47,7 @@ class NinjaTest extends munit.FunSuite {
 
     test("attack test") {
         testNinja = Some(new Ninja("Ninja", 100, 50, 70))
-        testNinja.get.setWeapon(weapon.get)
+        testNinja.get.setWeapon(new Bow("Bow", 60, 10, testNinja.get))
 
         testNinja.get.attack(testEnemy.get)
         assertEquals(testEnemy.get.getHealthPoints, 90)

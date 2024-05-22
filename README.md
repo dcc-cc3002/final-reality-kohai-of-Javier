@@ -18,7 +18,7 @@ The following files in the source code correspond to traits:
 * TCharacter.scala
 * WCharacter.scala
 * MagicalCharacter.scala
-* PartyTrait.scala
+* TParty.scala
 * Programmer.scala
 * TEnemy.scala
 

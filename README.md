@@ -64,6 +64,14 @@ This exception is thrown when a game statistic is not valid. For instance, when 
 
 This exception is thrown when a weapon is assigned to a character who is not compatible. See "Weapon compatiblity" for more details.
 
+### SameTypeException
+
+This exception is thrown when a character attacks another character or an enemy attacks another enemy.
+
+### PartyLimitException
+
+This exception is thrown when trying to add a character to a party that already reached the limit number of characters.
+
 ## Tests
 
 Tests for the AbstractWCharacter class are in the NinjaTest class. Tests for the AbstractWeapon class are in the AxeTest class.

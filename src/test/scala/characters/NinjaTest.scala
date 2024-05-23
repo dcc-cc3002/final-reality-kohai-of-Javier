@@ -1,7 +1,7 @@
 import characters.{TEnemy, Enemy, WCharacter, Ninja}
 import weapons.Weapon
 import weapons.Bow
-import exceptions.InvalidStatException
+import exceptions.{InvalidStatException, SameTypeException}
 
 class NinjaTest extends munit.FunSuite {
     var testNinja: Option[WCharacter] = None
@@ -73,5 +73,10 @@ class NinjaTest extends munit.FunSuite {
     test("attack test without weapon") {
         testNinja = Some(new Ninja("Ninja", 100, 50, 70))
         intercept[Exception](testNinja.get.attack(testEnemy.get))
+    }
+
+    test("Character tries to attack another playable Character") {
+        val testNinja2: WCharacter = new Ninja("Ninja 2", 100, 50, 70)
+        intercept[SameTypeException](testNinja.get.attack(testNinja2))
     }
 }

@@ -1,5 +1,5 @@
 package characters
-import exceptions.Require
+import exceptions.{Require, SameTypeException}
 
 /** The class for an enemy.
  * An enemy is a character opposing to the player's party.
@@ -21,6 +21,12 @@ class Enemy(name: String, healthPoints: Int, private val attack: Int, defense: I
     /** Returns the value of the action bar to be attained for the enemy to attack.*/
     def fullActionBar(): Int = weight
 
+    /** Receive damage from a playable character.*/
+    def receiveDamagePlayer(attackPoints: Int): Unit = receiveDamage(attackPoints)
+
+    /** Tries to receive damage from another enemy, but it throws an exception.*/
+    def receiveDamageEnemy(attackPoints: Int): Unit = throw new SameTypeException("Enemy")
+
     /** Attacks another character.*/
-    def attack(other: TCharacter): Unit = other.receiveDamage(attack)
+    def attack(other: TCharacter): Unit = other.receiveDamageEnemy(attack)
 }

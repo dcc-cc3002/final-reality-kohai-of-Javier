@@ -13,6 +13,8 @@ trait TCharacter {
     def fullActionBar(): Int
     def attack(other: TCharacter): Unit
     def receiveDamage(attackPoints: Int): Unit
+    def receiveDamagePlayer(attackPoints: Int): Unit
+    def receiveDamageEnemy(attackPoints: Int): Unit
 
     def getName(): String
     def getDefense(): Int

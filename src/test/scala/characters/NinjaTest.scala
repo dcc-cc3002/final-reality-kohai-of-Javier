@@ -79,4 +79,19 @@ class NinjaTest extends munit.FunSuite {
         val testNinja2: WCharacter = new Ninja("Ninja 2", 100, 50, 70)
         intercept[SameTypeException](testNinja.get.attack(testNinja2))
     }
+
+    private def testUnsetWeapon = {
+        assert(testNinja.isDefined)
+        testNinja.get.unsetWeapon
+        assertEquals(false, testNinja.get.getWeapon.isDefined)
+    }
+
+    test("unsetWeapon with weapon") {
+        testNinja.get.setWeapon(weapon.get)
+        testUnsetWeapon
+    }
+
+    test("unsetWeapon without weapon") {
+        testUnsetWeapon
+    }
 }

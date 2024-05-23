@@ -14,6 +14,13 @@ abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int,
     /** Returns an Option with the current weapon the character carries.*/
     def getWeapon(): Option[Weapon] = weapon
 
+    /** Unequip the current weapon.
+        If the character has no weapon, then this function has no effect.
+    */
+    def unsetWeapon(): Unit = {
+        weapon = None
+    }
+
     /** Returns the expected value of the character's action bar.*/
     def fullActionBar() = {
         if(weapon.isDefined)

@@ -1,6 +1,6 @@
 package characters
 import weapons.Weapon
-import exceptions.DoubleEquipmentException
+import exceptions.{DoubleEquipmentException, SameTypeException}
 
 /** An abstract class for a Character with a weapon
  * @param name The name of the character
@@ -22,6 +22,12 @@ abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int,
             weight
     }
 
+    /** Tries to receive damage from another playable character, but it throws an exception.*/
+    def receiveDamagePlayer(attackPoints: Int): Unit = throw new SameTypeException("")
+
+    /** Receives damage from an enemy.*/
+    def receiveDamageEnemy(attackPoints: Int): Unit = receiveDamage(attackPoints)
+
     /** Perform an attack on other character.
         In this case, the attacker character must have a weapon equiped.
         Otherwise, an exception is thrown.
@@ -29,7 +35,7 @@ abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int,
     */
     def attack(other: TCharacter): Unit = {
         if(weapon.isDefined) {
-            other.receiveDamage(weapon.get.getAttackPoints)
+            other.receiveDamagePlayer(weapon.get.getAttackPoints)
         }
         else {
             throw new Exception("No weapon carried by the attacker character")

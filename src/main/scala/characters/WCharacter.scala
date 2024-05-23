@@ -9,4 +9,5 @@ import weapons.Weapon
 trait WCharacter extends TCharacter {
     def getWeapon(): Option[Weapon]
     def setWeapon(newWeapon: Weapon): Unit
+    def unsetWeapon(): Unit
 }

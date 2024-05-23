@@ -1,4 +1,5 @@
 import characters.{Enemy, Ninja, WCharacter, TEnemy}
+import exceptions.SameTypeException
 
 class EnemyTest extends munit.FunSuite {
     var testEnemy: Option[TEnemy] = None
@@ -39,5 +40,10 @@ class EnemyTest extends munit.FunSuite {
         testEnemy = Some(new Enemy("Enemy", 100, 10, 50, 70))
         testEnemy.get.attack(testNinja.get)
         assertEquals(testNinja.get.getHealthPoints, 100)
+    }
+
+    test("Enemy tries to attack another Enemy") {
+        val testEnemy2: TEnemy = new Enemy("Enemy 2", 100, 60, 50, 70)
+        intercept[SameTypeException](testEnemy.get.attack(testEnemy2))
     }
 }

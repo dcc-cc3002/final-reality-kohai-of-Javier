@@ -1,29 +1,96 @@
-import characters.TCharacter
-import scala.collection.mutable
+import scala.collection.mutable.{Map, HashMap}
+import scala.collection.mutable.ArrayBuffer
 import scala.collection.immutable.List
+import characters.TCharacter
 
-/** Trait for the turns programmer, it determines which character plays next.
-* @param addCharacter Adds a character to the task programmer
-* @param removeCharacter Eliminates a character from the task programmer
-* @param maxActionBar Calculates the maximum of the action bar from all characters
-* @param restartActionBar Restarts the action bar of each character
-* @param augmentActionBar Aguments simultaneously the action bar of all characters by an arbitrary amount
-* @param completedActionBar Indicates whether a character completed their action bar
-* @param throwCompleteCharacters Delivers all characters who completed their action bar, in non-increasing order
-* @param selectCharacter Indicates the only character who plays the turn
-* @param getCharacters Returns a list of all characters added to the task programmer, with the current value of their action bar.
-*
-* @see Assigner
-*/
-trait Programmer {
-    def addCharacter(newCharacter: TCharacter): Unit
-    def removeCharacter(toRemove: TCharacter): Unit
-    def maxActionBar(): Int
-    def restartActionBar(toRestart: TCharacter): Unit
-    def augmentActionBar(howMuch: Int): Unit
-    def completedActionBar(myCharacter: TCharacter): Boolean
-    def throwCompleteCharacters(): List[TCharacter]
-    def selectCharacter(): TCharacter
+/** Task programmer class that assigns the character to play in any given moment.*/
+class Programmer extends TProgrammer {
+    /** HashMap with the characters added to the task programmer.
+        The first element stores the current value of the action bar (when a new character is added it starts at 0).
+        The second element stores the character itself.
+    */
+    private var added: Map[TCharacter, Int] = HashMap()
 
-    def getCharacters(): List[(Int, TCharacter)]
+    /** Adds a character to the task programmer.
+        @param newCharacter The character to be added
+    */
+    def addCharacter(newCharacter: TCharacter): Unit = {
+        added.addOne(newCharacter -> 0)
+    }
+
+    /** Removes a character from the task programmer.
+        @param toRemove The character to be removed
+    */
+    def removeCharacter(toRemove: TCharacter): Unit = {
+        added.remove(toRemove)
+    }
+
+    /** Calculates the maximum of the action bar from all characters.*/
+    def maxActionBar(): Int = {
+        var ans: Int = 0
+        for((c, v) <- added) {
+            val action: Int = v
+            if(ans < action) ans = v
+        }
+        ans
+    }
+
+    /** Restarts the action bar of each character
+        @param toRestart The character whose action bar must be restarted
+    */
+    def restartActionBar(toRestart: TCharacter): Unit = {
+        added.update(toRestart, 0)
+    }
+
+    /** Increases the action bar of all characters by an arbitrary amount k.*/
+    def augmentActionBar(k: Int): Unit = {
+        for((key, value) <- added) {
+            added.addOne((key, value+k))
+        }
+    }
+
+    /** Indicates whether a character completed their action bar.
+        @param myCharacter The character whose action bar we want to know is completed
+    */
+    def completedActionBar(myCharacter: TCharacter): Boolean = {
+        added.apply(myCharacter) >= myCharacter.fullActionBar()
+    }
+
+    /** Delivers all characters who completed their action bar, in non-increasing order of the difference between the current value of the action bar and the expected value of the action bar.
+        The function returns a list with each character who completed their action bar.
+    */
+    def throwCompleteCharacters(): List[TCharacter] = {
+        //buffer contains all the complete characters
+        var buffer: ArrayBuffer[(Int, TCharacter)] = ArrayBuffer()
+        for((c, v) <- added) {
+            if(v >= c.fullActionBar()) {
+                buffer.addOne((v-c.fullActionBar(), c))
+            }
+        }
+
+        //Sort buffer by the current value in the action bar
+        buffer.sortInPlaceWith((A, B) => A._1 > B._1)
+
+        //newBuffer is like buffer but without the values of the action bar
+        var newBuffer: ArrayBuffer[TCharacter] = ArrayBuffer()
+        for((v, c) <- buffer) {
+            newBuffer.addOne(c)
+        }
+        newBuffer.toList
+    }
+
+    /** Indicates the only character who plays the turn.*/
+    def selectCharacter(): TCharacter = {
+        val allCompleteCharacters: List[TCharacter] = throwCompleteCharacters()
+        allCompleteCharacters.head
+    }
+
+    /** Returns a list of all characters added to the task programmer, with the current value of their action bar.*/
+    def getCharacters(): List[(Int, TCharacter)] = {
+        val buffer: ArrayBuffer[(Int, TCharacter)] = ArrayBuffer()
+        for((k, v) <- added) {
+            buffer.addOne((v, k))
+        }
+        buffer.toList
+    }
 }

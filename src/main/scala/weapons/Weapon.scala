@@ -1,11 +1,7 @@
 package weapons
 import characters.WCharacter
 
-/** Trait for Weapons
- * @param getName Returns the name of the weapon
- * @param getAttackPoints Returns the number of attack points of the weapon
- * @param getWeight Returns the weight of the weapon
- * @param getOwner Getter for the character who owns the weapon
+/** Trait for a Weapon
  *
  * For the implementation of these methods, @see AbstractWeapon
  *
@@ -14,14 +10,36 @@ import characters.WCharacter
  * each weapon class for more details.
  */
 trait Weapon {
+
+    /** Getter for the name of the weapon.*/
     def getName(): String
+
+    /** Getter for the number of attack points of the weapon.*/
     def getAttackPoints(): Int
+
+    /** Getter for the weight of the weapon.*/
     def getWeight(): Int
+
+    /** Getter for the owner of the weapon.*/
     def getOwner(): WCharacter
 
+
+    /** Checks whether the weapon can be equipped to a Paladin.*/
     def checkPaladin: Boolean
+
+    /** Checks whether the weapon can be equipped to a Warrior.*/
     def checkWarrior: Boolean
+
+    /** Checks whether the weapon can be equipped to a Ninja.*/
     def checkNinja: Boolean
+
+    /** Checks whether the weapon can be equipped to a Black Mage.*/
     def checkBlackMage: Boolean
+
+    /** Checks whether the weapon can be equipped to a White Mage.*/
     def checkWhiteMage: Boolean
+
+
+    /** Returns true if and only if the Weapon is magical.*/
+    def isMagical: Boolean
 }

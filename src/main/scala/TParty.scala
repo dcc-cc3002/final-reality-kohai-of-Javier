@@ -5,7 +5,11 @@ import characters.TCharacter
   * If it has zero characters, it is considered defeated
   */
 trait TParty {
+
+    /** Adds a character to the party.*/
     def addCharacter(x: TCharacter): Unit
+
+    /** Returns true if and only if there are no alive charcters in the party.*/
     def isDefeated(): Boolean
 }
 

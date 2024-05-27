@@ -4,10 +4,15 @@ import weapons.Weapon
 /** Trait for a Character with Weapon.
 * It extends TCharacter. The idea is for enemies not to carry Weapons.
 * @see TCharacter
-* @param getWeapon Getter for the current weapon carried by the character
 */
 trait WCharacter extends TCharacter {
+
+    /** Getter for the character's weapon.*/
     def getWeapon(): Option[Weapon]
+
+    /** Setter for the character's weapon.*/
     def setWeapon(newWeapon: Weapon): Unit
+
+    /** Unequip the character's weapon.*/
     def unsetWeapon(): Unit
 }

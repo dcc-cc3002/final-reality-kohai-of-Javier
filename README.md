@@ -19,8 +19,9 @@ The following files in the source code correspond to traits:
 * WCharacter.scala
 * MagicalCharacter.scala
 * TParty.scala
-* Programmer.scala
+* TProgrammer.scala
 * TEnemy.scala
+* Spell.scala
 
 Traits don't contain values nor variables. Instead, getters are put to be implemented by their correponding classes.
 
@@ -46,6 +47,10 @@ A weapon can be carried by a common or magical character. It contains a name, at
 
 Weapons have minimum value requirements. In the constructor of the corresponding class the object Require is used to check if the minimum value requirements are met. If they don't, an InvalidStatException is thrown.
 
+### Spell
+
+Each spell has its own class, that extends from an abstract spell class which contains some generic methods for executing spells. It makes it easier to add new spells.
+
 ### Turn scheduler
 
 The turn scheduler is implemented in the Assigner class, which extends the Programmer Trait.
@@ -55,6 +60,8 @@ The turn scheduler is implemented in the Assigner class, which extends the Progr
 Each type of character can only wear certain kinds of weapons. The type of weapon each type of characters can carry appears in the project statement. Weapon compatiblity is implemented using the double dispatch technique: for each character, there is a function in the trait Weapon to be implemented in the definition of each weapon class.
 
 ## Exceptions
+
+See each exception file for more details.
 
 ### InvalidStatException
 
@@ -75,6 +82,14 @@ This exception is thrown when trying to add a character to a party that already 
 ### DoubleEquipmentException
 
 This exception is thrown when trying to equip a weapon already equipped to another character.
+
+### InvalidUserException
+
+### InvalidTargetException
+
+### InsufficientManaException
+
+### NoMagicWeaponException
 
 ## Tests
 

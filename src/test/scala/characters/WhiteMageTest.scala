@@ -1,5 +1,5 @@
-import characters.MagicalCharacter
-import characters.WhiteMage
+package characters
+
 
 class WhiteMageTest extends munit.FunSuite {
     var testWhiteMage: Option[MagicalCharacter] = None

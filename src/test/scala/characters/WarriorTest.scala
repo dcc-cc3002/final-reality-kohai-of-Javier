@@ -1,5 +1,5 @@
-import characters.WCharacter
-import characters.Warrior
+package characters
+
 
 class WarriorTest extends munit.FunSuite {
     var testWarrior: Option[WCharacter] = None

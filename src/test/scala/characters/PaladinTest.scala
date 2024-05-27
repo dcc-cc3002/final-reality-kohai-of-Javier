@@ -1,4 +1,4 @@
-import characters.{WCharacter, Paladin}
+package characters
 
 class PaladinTest extends munit.FunSuite {
     var testPaladin: Option[WCharacter] = None

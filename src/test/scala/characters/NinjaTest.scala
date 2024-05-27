@@ -1,4 +1,4 @@
-import characters.{TEnemy, Enemy, WCharacter, Ninja}
+package characters
 import weapons.Weapon
 import weapons.Bow
 import exceptions.{InvalidStatException, SameTypeException}

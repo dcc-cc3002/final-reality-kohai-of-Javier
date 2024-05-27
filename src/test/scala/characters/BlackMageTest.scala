@@ -1,4 +1,4 @@
-import characters.{MagicalCharacter, BlackMage}
+package characters
 
 class BlackMageTest extends munit.FunSuite {
     var testBlackMage: Option[MagicalCharacter] = None

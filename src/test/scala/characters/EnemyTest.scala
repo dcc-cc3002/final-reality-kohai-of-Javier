@@ -1,4 +1,4 @@
-import characters.{Enemy, Ninja, WCharacter, TEnemy}
+package characters
 import exceptions.SameTypeException
 
 class EnemyTest extends munit.FunSuite {

@@ -1,5 +1,5 @@
 package characters
-import exceptions.{Require, SameTypeException}
+import exceptions.{Require, SameTypeException, InvalidTargetException}
 
 /** The class for an enemy.
  * An enemy is a character opposing to the player's party.
@@ -29,4 +29,18 @@ class Enemy(name: String, healthPoints: Int, private val attack: Int, defense: I
 
     /** Attacks another character.*/
     def attack(other: TCharacter): Unit = other.receiveDamageEnemy(attack)
+
+    /** Receives a positive spell.
+     * It throws an InvalidTargetException.
+     */
+    override def positiveSpell: Unit = throw new InvalidTargetException("A positive spell can not be used with an Enemy")
+
+     /** Receives a negative spell, checking whether it is possible.
+      * It checks the enemy is not dead, otherwise it throws an InvalidTargetException.
+      */
+    override def negativeSpell: Unit = {
+        if(healthPoints == 0) {
+            throw new InvalidTargetException("A spell can not be used with a dead target")
+        }
+    }
 }

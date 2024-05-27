@@ -6,6 +6,7 @@ package characters
  * For an implementation, @see Enemy
  */
 trait TEnemy extends TCharacter {
+    /** Getter for the attack of the enemy.*/
     def getAttack(): Int
 
 }

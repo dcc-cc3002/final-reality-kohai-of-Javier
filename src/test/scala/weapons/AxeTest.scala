@@ -1,5 +1,5 @@
+package weapons
 import characters._
-import weapons.{Axe, Weapon}
 import exceptions._
 
 /** Test class for the Axe Weapon. */

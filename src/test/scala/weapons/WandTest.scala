@@ -1,5 +1,5 @@
+package weapons
 import characters._
-import weapons.{MagicWeapon, Wand}
 import exceptions.{InvalidStatException, IncompatibleWeaponException}
 
 /** Test class for the Wand Weapon. */

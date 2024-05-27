@@ -1,5 +1,5 @@
+package weapons
 import characters._
-import weapons.{Sword, Weapon}
 import exceptions.{InvalidStatException, IncompatibleWeaponException}
 
 /** Test class for the Sword Weapon. */

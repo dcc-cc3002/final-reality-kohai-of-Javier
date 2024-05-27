@@ -1,5 +1,4 @@
-import weapons.Staff
-import weapons.MagicWeapon
+package weapons
 import characters._
 import exceptions.{InvalidStatException, IncompatibleWeaponException}
 

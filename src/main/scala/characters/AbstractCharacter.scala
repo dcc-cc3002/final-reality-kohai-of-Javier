@@ -1,5 +1,5 @@
 package characters
-import exceptions.{Require, InvalidStatException}
+import exceptions.{Require, InvalidStatException, InvalidTargetException}
 
 /** Abstract class for a generic character.
  * @param name The name of the character. It must be non-empty
@@ -10,7 +10,7 @@ import exceptions.{Require, InvalidStatException}
 abstract class AbstractCharacter(private val name: String, private var healthPoints: Int, private val defense: Int, private val weight: Int) extends TCharacter {
 
     if(name.isEmpty) throw new InvalidStatException("The name of the character cannot be empty.")
-    Require.Stat(healthPoints, "healthPoints") atLeast 1
+    Require.Stat(healthPoints, "healthPoints") atLeast 0
     Require.Stat(defense, "defense") atLeast 0
     Require.Stat(weight, "weight") atLeast 1
 
@@ -31,4 +31,20 @@ abstract class AbstractCharacter(private val name: String, private var healthPoi
         if(attackPoints > defense) healthPoints -= attackPoints - defense
         if(healthPoints < 0) healthPoints = 0
     }
+
+    /** Receive a positive spell, checking whether it is possible.
+     * It checks the target is not dead, otherwise it throws an InvalidTargetException.
+     * Enemies override this method for throwing an InvalidTargetException.
+     */
+    def positiveSpell: Unit = {
+        if(healthPoints == 0) {
+            throw new InvalidTargetException("A spell can not be used with a dead target.")
+        }
+    }
+
+    /** Receive a negative spell.
+     * It throws an InvalidTargetException.
+     * Enemies override this method to accept the spell.
+     */
+    def negativeSpell: Unit = throw new InvalidTargetException("A negative spell can not be used with an ally")
 }

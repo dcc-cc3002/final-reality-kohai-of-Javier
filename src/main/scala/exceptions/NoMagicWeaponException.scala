@@ -12,4 +12,4 @@ package exceptions
  * }}}
  *
  */
-class InvalidTargetException extends Exception(s"A magical character tried to throw a spell without a magic weapon.")
+class NoMagicWeaponException extends Exception(s"A magical character tried to throw a spell without a magic weapon.")

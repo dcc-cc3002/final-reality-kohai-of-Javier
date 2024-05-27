@@ -15,5 +15,8 @@ abstract class AbstractMagicWeapon(name: String, attackPoints: Int, private val 
 
     /** Return the number of magic attack points of the weapon.*/
     def getMagicAttack(): Int = magicAttack
+
+    /** Returns true because the Weapon is magical.*/
+    override def isMagical: Boolean = true
 }
 

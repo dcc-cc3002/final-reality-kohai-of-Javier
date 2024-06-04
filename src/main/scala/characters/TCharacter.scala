@@ -18,7 +18,6 @@ trait TCharacter {
     /** Receive damage from an enemy.*/
     def receiveDamageEnemy(attackPoints: Int): Unit
 
-
     /** Getter for the name of the character.*/
     def getName(): String
 
@@ -31,6 +30,14 @@ trait TCharacter {
     /** Getter for the number of health points of the character.*/
     def getHealthPoints(): Int
 
+    /** Getter for the maximum number of health points of the character.*/
+    def getMaxHealthPoints(): Int
+
+    /** Receive damage from a spell.*/
+    def receiveMagicDamage(magicDamage: Int): Unit
+
+    /** Receive healing from a spell.*/
+    def receiveMagicHealing(magicHealing: Int): Unit
 
     /** Receives a negative spell.*/
     def negativeSpell: Unit

@@ -1,5 +1,6 @@
 package weapons
 import characters._
+import characters.magicalcharacters._
 import exceptions.{InvalidStatException, IncompatibleWeaponException}
 
 

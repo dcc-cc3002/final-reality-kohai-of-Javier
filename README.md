@@ -33,6 +33,14 @@ Characters are the fighters in combats. There are different types of characters:
 
 Characters have minimum value requirements. In the constructor of the corresponding class the object Require is used to check if the minimum value requirements are met. If they don't, an InvalidStatException is thrown.
 
+#### Enemy
+
+An enemy is a special type of character who can not carry weapons and it has a default attack value.
+
+#### Magical Characters
+
+Magical characters also have mana points.
+
 ### Party
 
 Each party is composed of zero or more characters. At the beginning of each turn the program checks whether both the player party and the enemy party have at least one living characters. If it is not the case, the combat ends. Else, the combat continues.
@@ -47,9 +55,15 @@ A weapon can be carried by a common or magical character. It contains a name, at
 
 Weapons have minimum value requirements. In the constructor of the corresponding class the object Require is used to check if the minimum value requirements are met. If they don't, an InvalidStatException is thrown.
 
+#### Magic Weapons
+
+Magic Weapons also have magic attack points, useful for making damage with spells.
+
 ### Spell
 
 Each spell has its own class, that extends from an abstract spell class which contains some generic methods for executing spells. It makes it easier to add new spells.
+
+For now, spells can only consume the user's mana and augment or reduce the target's number of health points.
 
 ### Turn scheduler
 

@@ -1,5 +1,7 @@
 package spells
-import characters.{MagicalCharacter, TCharacter}
+
+import characters._
+import characters.magicalcharacters._
 import exceptions._
 
 /** Abstract Class for a magic spell.*/
@@ -10,14 +12,6 @@ abstract class AbstractSpell extends Spell {
      */
     protected def negativeBlack(user: MagicalCharacter, target: TCharacter, manaCost: Int): Unit = {
         target.negativeSpell
-        user.blackSpell(manaCost)
-    }
-
-    /** Executes a positive black spell.
-     * If it is not possible, an exception is thrown.
-     */
-    protected def positiveBlack(user: MagicalCharacter, target: TCharacter, manaCost: Int): Unit = {
-        target.positiveSpell
         user.blackSpell(manaCost)
     }
 

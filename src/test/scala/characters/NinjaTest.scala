@@ -1,4 +1,6 @@
 package characters
+
+import characters.enemies._
 import weapons.Weapon
 import weapons.Bow
 import exceptions.{InvalidStatException, SameTypeException}

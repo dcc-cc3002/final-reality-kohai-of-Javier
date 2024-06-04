@@ -1,5 +1,7 @@
 package spells
-import characters.{MagicalCharacter, TCharacter}
+
+import characters._
+import characters.magicalcharacters._
 
 /** Trait for a spell.
  * The idea is to make easy to add a new spell.

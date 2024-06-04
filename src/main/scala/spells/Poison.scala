@@ -1,5 +1,7 @@
 package spells
-import characters.{MagicalCharacter, TCharacter}
+
+import characters._
+import characters.magicalcharacters._
 import exceptions._
 
 /** Class for Poison White spell.

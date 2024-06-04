@@ -1,5 +1,7 @@
 package spells
-import characters.{MagicalCharacter, TCharacter}
+
+import characters._
+import characters.magicalcharacters._
 import exceptions._
 
 /** Class for Paralysis White spell.

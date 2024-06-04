@@ -1,5 +1,6 @@
 package characters
 import weapons.Weapon
+import weapons.magicweapons.MagicWeapon
 import exceptions.{DoubleEquipmentException, SameTypeException}
 
 /** An abstract class for a Character with a weapon
@@ -13,6 +14,10 @@ abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int,
 
     /** Returns an Option with the current weapon the character carries.*/
     def getWeapon(): Option[Weapon] = weapon
+
+    /** Setter for the character's magical weapon.
+     * It does nothing and the method is overriden for Magical characters.*/
+    def setMagicWeapon(newWeapon: MagicWeapon): Unit = {}
 
     /** Unequip the current weapon.
         If the character has no weapon, then this function has no effect.

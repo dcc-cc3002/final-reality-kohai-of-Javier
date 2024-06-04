@@ -12,5 +12,6 @@ class FireTest extends AbstractSpellTest {
     test("Execute spell") {
         fireSpell.execute(blackChar, testEnemy)
         assertEquals(blackChar.getManaPoints, 25)
+        assertEquals(testEnemy.getHealthPoints, 60)
     }
 }

@@ -12,5 +12,6 @@ class ThunderTest extends AbstractSpellTest {
     test("Execute spell") {
         thunderSpell.execute(blackChar, testEnemy)
         assertEquals(blackChar.getManaPoints, 20)
+        assertEquals(testEnemy.getHealthPoints, 60)
     }
 }

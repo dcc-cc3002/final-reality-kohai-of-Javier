@@ -3,19 +3,24 @@ import exceptions.{Require, InvalidStatException, InvalidTargetException}
 
 /** Abstract class for a generic character.
  * @param name The name of the character. It must be non-empty
- * @param healthPoints Initial HP of the character. It must be greater than 0
- * @param defense Number of defense points of the character. It must be greater than 0
- * @param weight Weight of the character. It must be greater than 0
+ * @param healthPoints Initial and maximum HP of the character. It must be at least 0
+ * @param defense Number of defense points of the character. It must be at least 0
+ * @param weight Weight of the character. It must be at least 1
  */
 abstract class AbstractCharacter(private val name: String, private var healthPoints: Int, private val defense: Int, private val weight: Int) extends TCharacter {
 
-    if(name.isEmpty) throw new InvalidStatException("The name of the character cannot be empty.")
+    Require.Stat(name.length, "name length") atLeast 1
     Require.Stat(healthPoints, "healthPoints") atLeast 0
     Require.Stat(defense, "defense") atLeast 0
     Require.Stat(weight, "weight") atLeast 1
 
+    private val maxHP: Int = healthPoints
+
     /** Returns the number of current health points.*/
     def getHealthPoints(): Int = healthPoints
+
+    /** Returns the maximium number of health points this character can have.*/
+    def getMaxHealthPoints(): Int = maxHP
 
     /** Returns the name of the character.*/
     def getName(): String = name
@@ -30,6 +35,18 @@ abstract class AbstractCharacter(private val name: String, private var healthPoi
     def receiveDamage(attackPoints: Int): Unit = {
         if(attackPoints > defense) healthPoints -= attackPoints - defense
         if(healthPoints < 0) healthPoints = 0
+    }
+
+    /** Receive damage from a spell.*/
+    def receiveMagicDamage(magicDamage: Int): Unit = {
+        healthPoints -= magicDamage
+        if(healthPoints < 0) healthPoints = 0
+    }
+
+    /** Receive healing from a spell.*/
+    def receiveMagicHealing(magicHealing: Int): Unit = {
+        healthPoints += magicHealing
+        if(healthPoints > maxHP) healthPoints = maxHP
     }
 
     /** Receive a positive spell, checking whether it is possible.

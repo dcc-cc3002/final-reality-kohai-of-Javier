@@ -1,6 +1,10 @@
 package spells
+
 import weapons._
+import weapons.magicweapons._
 import characters._
+import characters.magicalcharacters._
+import characters.enemies._
 import exceptions._
 
 /** Abstract class for testing spells.*/

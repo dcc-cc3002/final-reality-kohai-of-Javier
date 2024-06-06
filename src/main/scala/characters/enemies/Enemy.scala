@@ -1,6 +1,6 @@
 package characters.enemies
 
-import characters._
+import characters.{AbstractCharacter, TCharacter}
 import exceptions.{Require, SameTypeException, InvalidTargetException}
 
 /** The class for an enemy.

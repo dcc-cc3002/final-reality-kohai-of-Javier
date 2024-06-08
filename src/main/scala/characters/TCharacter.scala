@@ -1,5 +1,8 @@
 package characters
 
+import spells.Spell
+import weapons.Weapon
+
 /** Generic trait for a Character.*/
 trait TCharacter {
     /** Returns the value of the action bar to be attained for the character to play.*/
@@ -44,4 +47,12 @@ trait TCharacter {
 
     /** Receives a positive spell.*/
     def positiveSpell: Unit
+
+    /** Changes weapon, for the characters who can carry a weapon.
+     *  If they can't, then this function does nothing. */
+    def changeWeapon(wp: Weapon): Unit
+
+    /** Cast a spell, for the magical characters who can,
+     * Else this function does nothing.*/
+    def castSpell(target: TCharacter, spell: Spell)
 }

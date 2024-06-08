@@ -1,5 +1,7 @@
 package characters
-import exceptions.{Require, InvalidStatException, InvalidTargetException}
+import exceptions.{InvalidStatException, InvalidTargetException, Require}
+import spells.Spell
+import weapons.Weapon
 
 /** Abstract class for a generic character.
  * @param name The name of the character. It must be non-empty
@@ -64,4 +66,12 @@ abstract class AbstractCharacter(private val name: String, private var healthPoi
      * Enemies override this method to accept the spell.
      */
     def negativeSpell: Unit = throw new InvalidTargetException("A negative spell can not be used with an ally")
+
+    /** It does nothing. In AbstractWCharacter it changes the weapon of the character.
+     * @see AbstractWCharacter */
+    def changeWeapon(wp: Weapon): Unit = {}
+
+    /** It does nothing. In AbstractMagicalCharacter it casts a spell.
+     * @see AbstractMagicalCharacter */
+    def castSpell(target: TCharacter, spell: Spell): Unit = {}
 }

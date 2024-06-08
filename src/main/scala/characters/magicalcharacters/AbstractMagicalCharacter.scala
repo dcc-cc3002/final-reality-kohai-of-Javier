@@ -1,13 +1,15 @@
 package characters.magicalcharacters
 
 import characters._
-import weapons.{Weapon}
+import weapons.Weapon
 import weapons.magicweapons.MagicWeapon
-import exceptions.{Require, InvalidStatException, NoMagicWeaponException, InsufficientManaException}
+import exceptions.{InsufficientManaException, InvalidStatException, NoMagicWeaponException, Require}
+import spells.Spell
 
 /** Abstract class for a Magical Character.
  * A magical character also has mana points
  * There are two concrete classes for magical characters: BlackMage and WhiteMage
+ * @param manaPoints The number of initial mana points of this magical character
  * @see AbstractCharacter
  */
 abstract class AbstractMagicalCharacter(name: String, healthPoints: Int, defense: Int, weight: Int, private var manaPoints: Int) extends AbstractWCharacter(name, healthPoints, defense, weight) with MagicalCharacter {
@@ -33,6 +35,14 @@ abstract class AbstractMagicalCharacter(name: String, healthPoints: Int, defense
     override def unsetWeapon: Unit = {
         weapon = None
         magicWeapon = None
+    }
+
+    /** Casts a spell.
+     * @param target The target character of the spell.
+     * @param spell The spell to be casted.
+     * */
+    override def castSpell(target: TCharacter, spell: Spell): Unit = {
+        spell.execute(this, target)
     }
 
     /** Apply a spell.

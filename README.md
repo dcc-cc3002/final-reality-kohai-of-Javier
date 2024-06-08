@@ -22,6 +22,7 @@ The following files in the source code correspond to traits:
 * TProgrammer.scala
 * TEnemy.scala
 * Spell.scala
+* GameState.scala
 
 Traits don't contain values nor variables. Instead, getters are put to be implemented by their correponding classes.
 
@@ -68,6 +69,18 @@ For now, spells can only consume the user's mana and augment or reduce the targe
 ### Turn scheduler
 
 The turn scheduler is implemented in the Assigner class, which extends the Programmer Trait.
+
+### Controller
+
+A game is controlled by the game controller implementing the State Design Pattern. The game controller contains the turn programmer of the game and a variable with the current state of the game.
+
+#### States
+
+Each phase of the game is modelled using states. Each time an event happens, its "update" method is called for the game controller to change its state if necessary.
+
+#### States Diagram
+
+![Diagrama de estados](docs/diagrama-estados.png)
 
 ## Weapon compatiblity
 

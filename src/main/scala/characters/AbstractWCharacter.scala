@@ -16,14 +16,20 @@ abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int,
     def getWeapon(): Option[Weapon] = weapon
 
     /** Setter for the character's magical weapon.
-     * It does nothing and the method is overriden for Magical characters.*/
+     * It does nothing and the method is overridden for Magical characters.*/
     def setMagicWeapon(newWeapon: MagicWeapon): Unit = {}
 
-    /** Unequip the current weapon.
+    /** Un-equip the current weapon.
         If the character has no weapon, then this function has no effect.
     */
-    def unsetWeapon(): Unit = {
+    def unsetWeapon(): Unit = weapon = None
+
+    /** Changes the weapon of the character.
+     * @param wp: The new weapon to be assigned.
+     * */
+    override def changeWeapon(wp: Weapon): Unit = {
         weapon = None
+        setWeapon(wp)
     }
 
     /** Returns the expected value of the character's action bar.*/
@@ -41,7 +47,7 @@ abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int,
     def receiveDamageEnemy(attackPoints: Int): Unit = receiveDamage(attackPoints)
 
     /** Perform an attack on other character.
-        In this case, the attacker character must have a weapon equiped.
+        In this case, the attacker character must have a weapon equipped.
         Otherwise, an exception is thrown.
         @param other The character to be attacked
     */

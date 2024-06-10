@@ -10,7 +10,7 @@ import scala.util.Random
 abstract class AbstractSpell extends Spell {
 
     /** Determines whether an probable effect will be  applied to the target.
-     * @percentage The probability in percentage of an effect being applied.
+     * @param percentage The probability in percentage of an effect being applied.
      * */
     protected def hasEffect(percentage: Int): Boolean = {
         val rand: Random = new Random

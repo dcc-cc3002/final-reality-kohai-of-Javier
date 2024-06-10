@@ -1,5 +1,6 @@
 package characters
-import exceptions.{InvalidStatException, InvalidTargetException, Require}
+import effects.TEffect
+import exceptions.{InvalidTargetException, Require}
 import spells.Spell
 import weapons.Weapon
 
@@ -55,7 +56,7 @@ abstract class AbstractCharacter(private val name: String, private var healthPoi
      * It checks the target is not dead, otherwise it throws an InvalidTargetException.
      * Enemies override this method for throwing an InvalidTargetException.
      */
-    def positiveSpell: Unit = {
+    def positiveSpell(): Unit = {
         if(healthPoints == 0) {
             throw new InvalidTargetException("A spell can not be used with a dead target.")
         }
@@ -65,7 +66,7 @@ abstract class AbstractCharacter(private val name: String, private var healthPoi
      * It throws an InvalidTargetException.
      * Enemies override this method to accept the spell.
      */
-    def negativeSpell: Unit = throw new InvalidTargetException("A negative spell can not be used with an ally")
+    def negativeSpell(): Unit = throw new InvalidTargetException("A negative spell can not be used with an ally")
 
     /** It does nothing. In AbstractWCharacter it changes the weapon of the character.
      * @see AbstractWCharacter */
@@ -74,4 +75,12 @@ abstract class AbstractCharacter(private val name: String, private var healthPoi
     /** It does nothing. In AbstractMagicalCharacter it casts a spell.
      * @see AbstractMagicalCharacter */
     def castSpell(target: TCharacter, spell: Spell): Unit = {}
+
+    /** It does nothing, since only enemies receive effects.
+     * @see Enemy */
+    def addEffect(e: TEffect): Unit = {}
+
+    /** It does nothing, since only enemies receive effects.
+     * @see Enemy */
+    def applyEffects(): Unit = {}
 }

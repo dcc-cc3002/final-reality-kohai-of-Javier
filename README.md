@@ -23,6 +23,7 @@ The following files in the source code correspond to traits:
 * TEnemy.scala
 * Spell.scala
 * GameState.scala
+* TEffect.scala
 
 Traits don't contain values nor variables. Instead, getters are put to be implemented by their correponding classes.
 
@@ -65,6 +66,10 @@ Magic Weapons also have magic attack points, useful for making damage with spell
 Each spell has its own class, that extends from an abstract spell class which contains some generic methods for executing spells. It makes it easier to add new spells.
 
 For now, spells can only consume the user's mana and augment or reduce the target's number of health points.
+
+### Effects
+
+Some spell cause certain effects on its targets. For now effects are only applied on enemies. Poisoned, Paralyzed and Burned are supported.
 
 ### Turn scheduler
 

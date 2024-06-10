@@ -9,6 +9,12 @@ import characters._
  */
 trait TEnemy extends TCharacter {
     /** Getter for the attack of the enemy.*/
-    def getAttack(): Int
+    def getAttack: Int
+
+    /** Getter for the default action of the character.*/
+    def getAction: String
+
+    /** Setter for the default action of the enemy */
+    def setAction(str: String): Unit
 
 }

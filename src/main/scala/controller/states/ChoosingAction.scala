@@ -16,6 +16,8 @@ class ChoosingAction(currChar: TCharacter) extends AbstractGameState {
           controller.state = new ChoosingSpell(currChar)
         else if(action.get == "weapon")
           controller.state = new ChangingWeapon(currChar)
+        else
+          controller.state = new TurnProgramming
     }
   }
 }

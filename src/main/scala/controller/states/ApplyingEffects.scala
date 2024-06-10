@@ -8,7 +8,7 @@ import controller.GameController
  * */
 class ApplyingEffects(currChar: TCharacter) extends AbstractGameState {
   def update(controller: GameController): Unit = {
-    //First, apply the effects of the spells on the character
+    currChar.applyEffects()
     if(currChar.getHealthPoints == 0)
       controller.state = new CharacterElimination(currChar)
     else {

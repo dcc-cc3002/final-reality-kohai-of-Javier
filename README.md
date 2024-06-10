@@ -80,7 +80,7 @@ Each phase of the game is modelled using states. Each time an event happens, its
 
 #### States Diagram
 
-![Diagrama de estados](docs/diagrama-estados.png)
+![States Diagram](docs/diagrama-estados.png)
 
 ## Weapon compatiblity
 

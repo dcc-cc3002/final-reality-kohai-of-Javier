@@ -1,7 +1,10 @@
 package characters.enemies
 
 import characters.{AbstractCharacter, TCharacter}
-import exceptions.{Require, SameTypeException, InvalidTargetException}
+import effects.TEffect
+import exceptions.{InvalidTargetException, Require, SameTypeException}
+
+import scala.collection.mutable.ListBuffer
 
 /** The class for an enemy.
  * An enemy is a character opposing to the player's party.
@@ -17,8 +20,17 @@ class Enemy(name: String, healthPoints: Int, private val attack: Int, defense: I
 
     Require.Stat(attack, "attack") atLeast 1
 
+    private var action: String = "attack"
+    private val effects: ListBuffer[TEffect] = ListBuffer()
+
     /** Returns the number of attack points of the enemy.*/
-    def getAttack(): Int = attack
+    def getAttack: Int = attack
+
+    /** Getter for the default action of the enemy. */
+    def getAction(): String = action
+
+    /** Setter for the default action of the enemy.*/
+    def setAction(str: String): Unit = action = str
 
     /** Returns the value of the action bar to be attained for the enemy to attack.*/
     def fullActionBar(): Int = weight
@@ -43,6 +55,20 @@ class Enemy(name: String, healthPoints: Int, private val attack: Int, defense: I
     override def negativeSpell: Unit = {
         if(healthPoints == 0) {
             throw new InvalidTargetException("A spell can not be used with a dead target")
+        }
+    }
+
+    /**  */
+    override def addEffect(effect: TEffect): Unit = {
+        effects += effect
+    }
+
+    /** It applies the effects of spells thrown at this enemy. */
+    override def applyEffects(): Unit = {
+        for(effect <- effects) {
+            effect.apply(this)
+            if(effect.getTurns == 0)
+                effects -= effect
         }
     }
 }

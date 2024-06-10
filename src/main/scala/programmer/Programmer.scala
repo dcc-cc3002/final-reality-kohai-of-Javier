@@ -11,7 +11,7 @@ class Programmer extends TProgrammer {
         The first element stores the current value of the action bar (when a new character is added it starts at 0).
         The second element stores the character itself.
     */
-    private var added: Map[TCharacter, Int] = HashMap()
+    private val added: Map[TCharacter, Int] = HashMap()
 
     /** Adds a character to the task programmer.
         @param newCharacter The character to be added
@@ -55,7 +55,7 @@ class Programmer extends TProgrammer {
         @param myCharacter The character whose action bar we want to know is completed
     */
     def completedActionBar(myCharacter: TCharacter): Boolean = {
-        added.apply(myCharacter) >= myCharacter.fullActionBar()
+        added.apply(myCharacter) >= myCharacter.fullActionBar
     }
 
     /** Delivers all characters who completed their action bar, in non-increasing order of the difference between the current value of the action bar and the expected value of the action bar.
@@ -65,8 +65,8 @@ class Programmer extends TProgrammer {
         //buffer contains all the complete characters
         var buffer: ArrayBuffer[(Int, TCharacter)] = ArrayBuffer()
         for((c, v) <- added) {
-            if(v >= c.fullActionBar()) {
-                buffer.addOne((v-c.fullActionBar(), c))
+            if(v >= c.fullActionBar) {
+                buffer.addOne((v-c.fullActionBar, c))
             }
         }
 

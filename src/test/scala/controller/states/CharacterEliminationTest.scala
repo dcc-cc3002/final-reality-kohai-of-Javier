@@ -8,6 +8,6 @@ class CharacterEliminationTest extends AbstractGameStateTest {
     controller.state = new CharacterElimination(characters.head)
     controller.update
 
-    assert(controller.state.isInstanceOf[TurnProgramming])
+    assert(controller.state.isTurnProgramming())
   }
 }

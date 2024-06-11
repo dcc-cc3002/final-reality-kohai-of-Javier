@@ -9,12 +9,12 @@ class ApplyingEffectsTest extends AbstractGameStateTest {
     controller.state = new ApplyingEffects(char)
     controller.update
 
-    assert(controller.state.isInstanceOf[ChoosingAction])
+    assert(controller.state.isChoosingAction())
 
     val char2: TCharacter = new Warrior("Warrior", 0, 50, 70)
     controller.state = new ApplyingEffects(char2)
     controller.update
 
-    assert(controller.state.isInstanceOf[CharacterElimination])
+    assert(controller.state.isCharacterElimination())
   }
 }

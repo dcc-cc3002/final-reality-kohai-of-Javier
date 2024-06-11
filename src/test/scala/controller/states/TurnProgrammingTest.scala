@@ -6,6 +6,6 @@ class TurnProgrammingTest extends AbstractGameStateTest {
     controller.state = new TurnProgramming
     controller.update
     assertEquals(controller.turnProgrammer.selectCharacter(), characters.head)
-    assert(controller.state.isInstanceOf[ApplyingEffects])
+    assert(controller.state.isApplyingEffects())
   }
 }

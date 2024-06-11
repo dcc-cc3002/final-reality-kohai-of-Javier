@@ -9,6 +9,6 @@ class ChoosingSpellTest extends AbstractGameStateTest {
     val magicChar: TCharacter = new WhiteMage("White Mage", 100, 100, 50, 70)
     controller.state = new ChoosingSpell(magicChar)
     controller.update
-    assert(controller.state.isInstanceOf[ChoosingSpell])
+    assert(controller.state.isChoosingSpell())
   }
 }

@@ -8,6 +8,8 @@ import controller.GameController
  * */
 class ChoosingAction(currChar: TCharacter) extends AbstractGameState {
   private var action: Option[String] = None
+
+  /** Changes the state of the game controller */
   def update(controller: GameController): Unit = {
     if(action.isDefined) {
         if(action.get == "attack")
@@ -20,4 +22,7 @@ class ChoosingAction(currChar: TCharacter) extends AbstractGameState {
           controller.state = new TurnProgramming
     }
   }
+
+  /** Returns true because this state is ChoosingAction. */
+  override def isChoosingAction(): Boolean = true
 }

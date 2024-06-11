@@ -12,6 +12,7 @@ import spells.Spell
  * */
 class DoingAction(attacker: TCharacter, target: TCharacter, spell: Option[Spell] = None) extends AbstractGameState {
 
+  /** Changes the state of the game controller */
   def update(controller: GameController): Unit = {
     if(spell.isDefined) {
       attacker.castSpell(target, spell.get)
@@ -24,4 +25,7 @@ class DoingAction(attacker: TCharacter, target: TCharacter, spell: Option[Spell]
     else
       controller.state = new TurnProgramming
   }
+
+  /** Returns true because this state is DoingAction. */
+  override def isDoingAction(): Boolean = true
 }

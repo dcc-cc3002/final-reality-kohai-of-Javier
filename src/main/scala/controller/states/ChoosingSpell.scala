@@ -9,8 +9,13 @@ import spells.Spell
  * */
 class ChoosingSpell(magicChar: TCharacter) extends AbstractGameState {
   private var spell: Option[Spell] = None
+
+  /** Changes the state of the game controller */
   def update(controller: GameController): Unit = {
     if(spell.isDefined)
       controller.state = new ChoosingTarget(magicChar, spell)
   }
+
+  /** Returns true because this state is ChoosingSpell. */
+  override def isChoosingSpell(): Boolean = true
 }

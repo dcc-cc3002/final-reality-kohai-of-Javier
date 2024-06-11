@@ -7,6 +7,8 @@ import controller.GameController
  * @param currChar The current character in turn.
  * */
 class ApplyingEffects(currChar: TCharacter) extends AbstractGameState {
+
+  /** Changes the state of the game controller */
   def update(controller: GameController): Unit = {
     currChar.applyEffects()
     if(currChar.getHealthPoints == 0)
@@ -15,4 +17,7 @@ class ApplyingEffects(currChar: TCharacter) extends AbstractGameState {
       controller.state = new ChoosingAction(currChar)
     }
   }
+
+  /** Returns true because this state is ApplyingEffects. */
+  override def isApplyingEffects(): Boolean = true
 }

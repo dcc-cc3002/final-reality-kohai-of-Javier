@@ -28,7 +28,7 @@ abstract class AbstractWCharacter(name: String, healthPoints: Int, defense: Int,
      * @param wp: The new weapon to be assigned.
      * */
     override def changeWeapon(wp: Weapon): Unit = {
-        weapon = None
+        wp.changeOwner(this)
         setWeapon(wp)
     }
 

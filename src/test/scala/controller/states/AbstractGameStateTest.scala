@@ -11,4 +11,14 @@ abstract class AbstractGameStateTest extends munit.FunSuite {
     controller = new GameController(characters)
   }
 
+  test("getters test") {
+    controller.state = new TurnProgramming
+    assert(!controller.state.isApplyingEffects())
+    assert(!controller.state.isChangingWeapon())
+    assert(!controller.state.isCharacterElimination())
+    assert(!controller.state.isChoosingAction())
+    assert(!controller.state.isChoosingSpell())
+    assert(!controller.state.isChoosingTarget())
+    assert(!controller.state.isDoingAction())
+  }
 }

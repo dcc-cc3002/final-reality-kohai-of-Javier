@@ -2,13 +2,23 @@ package controller.states
 
 import characters.TCharacter
 import characters.magicalcharacters.WhiteMage
+import spells.Healing
 
 class ChoosingSpellTest extends AbstractGameStateTest {
 
-  test("update test") {
+  test("update test with no spell") {
     val magicChar: TCharacter = new WhiteMage("White Mage", 100, 100, 50, 70)
     controller.state = new ChoosingSpell(magicChar)
     controller.update
+
     assert(controller.state.isChoosingSpell())
+  }
+
+  test("update test with a Healing spell") {
+    val magicChar: TCharacter = new WhiteMage("White Mage", 100, 100, 50, 70)
+    controller.state = new ChoosingSpell(magicChar, Some(new Healing))
+    controller.update
+
+    assert(controller.state.isChoosingTarget())
   }
 }

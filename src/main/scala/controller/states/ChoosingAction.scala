@@ -5,9 +5,10 @@ import controller.GameController
 
 /** State class when a character must choose an action (attack, spell or changing weapon)
  * @param currChar The current character in play.
+ * @param ac Option for testing purposes
  * */
-class ChoosingAction(currChar: TCharacter) extends AbstractGameState {
-  private var action: Option[String] = None
+class ChoosingAction(currChar: TCharacter, ac: Option[String] = None) extends AbstractGameState {
+  private var action: Option[String] = ac
 
   /** Changes the state of the game controller */
   def update(controller: GameController): Unit = {
@@ -18,7 +19,7 @@ class ChoosingAction(currChar: TCharacter) extends AbstractGameState {
           controller.state = new ChoosingSpell(currChar)
         else if(action.get == "weapon")
           controller.state = new ChangingWeapon(currChar)
-        else
+        else if(action.get == "skip")
           controller.state = new TurnProgramming
     }
   }

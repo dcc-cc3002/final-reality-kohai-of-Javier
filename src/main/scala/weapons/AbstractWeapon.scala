@@ -29,9 +29,14 @@ abstract class AbstractWeapon(private val name: String, private val attackPoints
     def getOwner(): WCharacter = owner
 
     /** Returns false if the weapon is not magical.
-     * For magical weapons this method is overriden to return true.
+     * For magical weapons this method is overridden to return true.
      */
     def isMagical: Boolean = false
+
+    /** Changes the owner of this weapon. */
+    def changeOwner(newOwner: WCharacter): Unit = {
+        owner = newOwner
+    }
 
 }
 

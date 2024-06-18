@@ -23,6 +23,8 @@ trait Weapon {
     /** Getter for the owner of the weapon.*/
     def getOwner(): WCharacter
 
+    /** Setter for the new owner of the weapon. */
+    def changeOwner(newOwner: WCharacter): Unit
 
     /** Checks whether the weapon can be equipped to a Paladin.*/
     def checkPaladin: Boolean

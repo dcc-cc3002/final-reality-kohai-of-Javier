@@ -16,6 +16,12 @@ class Party(private var warriors: ArrayBuffer[WCharacter] = ArrayBuffer[WCharact
         if(warriors.knownSize == 3) throw new PartyLimitException(3)
         warriors += newCharacter
     }
-    /** Returns true if and only if there are no Characters left in the warriors array */
-    def isDefeated(): Boolean = warriors.isEmpty
+    /** Returns true if and only if there are no alive Characters left in the warriors array */
+    def isDefeated(): Boolean = {
+        for(char <- warriors) {
+            if(char.getHealthPoints != 0)
+                return false
+        }
+        true
+    }
 }

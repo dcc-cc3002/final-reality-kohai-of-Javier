@@ -20,6 +20,8 @@ class DoingAction(attacker: TCharacter, target: TCharacter, spell: Option[Spell]
     else
       attacker.attack(target)
 
+    controller.turnProgrammer.restartActionBar(attacker)
+
     if(target.getHealthPoints == 0)
       controller.state = new CharacterElimination(target)
     else

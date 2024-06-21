@@ -1,4 +1,4 @@
-package exceptions
+package exceptions.spellexceptions
 
 /**
  * Custom exception to signal a spell without a magic weapon.

@@ -2,7 +2,8 @@ package characters.enemies
 
 import characters.{AbstractCharacter, TCharacter}
 import effects.TEffect
-import exceptions.{InvalidTargetException, Require, SameTypeException}
+import exceptions.spellexceptions.InvalidTargetException
+import exceptions.{Require, SameTypeException}
 
 import scala.collection.mutable.ListBuffer
 

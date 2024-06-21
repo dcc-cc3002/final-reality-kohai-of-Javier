@@ -1,6 +1,7 @@
 package characters
 import effects.TEffect
-import exceptions.{InvalidTargetException, Require}
+import exceptions.Require
+import exceptions.spellexceptions.InvalidTargetException
 import spells.Spell
 import weapons.Weapon
 

@@ -1,4 +1,4 @@
-package exceptions
+package exceptions.spellexceptions
 
 /**
  * Custom exception to signal a magical character does not have enough mana for some spell.

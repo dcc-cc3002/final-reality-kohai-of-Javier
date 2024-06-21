@@ -1,9 +1,10 @@
 package characters.magicalcharacters
 
 import characters._
+import exceptions.spellexceptions.{InsufficientManaException, NoMagicWeaponException}
 import weapons.Weapon
 import weapons.magicweapons.MagicWeapon
-import exceptions.{InsufficientManaException, InvalidStatException, NoMagicWeaponException, Require}
+import exceptions.{InvalidStatException, Require}
 import spells.Spell
 
 /** Abstract class for a Magical Character.

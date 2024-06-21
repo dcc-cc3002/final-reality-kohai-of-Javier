@@ -6,6 +6,7 @@ import characters._
 import characters.magicalcharacters._
 import characters.enemies._
 import exceptions._
+import exceptions.spellexceptions.{InsufficientManaException, InvalidTargetException, NoMagicWeaponException}
 
 /** Abstract class for testing spells.*/
 abstract class AbstractSpellTest extends munit.FunSuite {

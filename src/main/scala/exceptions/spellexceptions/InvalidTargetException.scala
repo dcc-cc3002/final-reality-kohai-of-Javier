@@ -1,4 +1,4 @@
-package exceptions
+package exceptions.spellexceptions
 
 /**
  * Custom exception to signal an invalid target for some attack or spell.

@@ -1,9 +1,9 @@
 package characters.magicalcharacters
 
 import characters._
-import weapons.{Weapon}
+import exceptions.spellexceptions.InvalidUserException
+import weapons.Weapon
 import weapons.magicweapons.MagicWeapon
-import exceptions.InvalidUserException
 
 /** Class for Magical Character: Black Mage */
 class BlackMage(name: String, healthPoints: Int, defense: Int, weight: Int, manaPoints: Int) extends AbstractMagicalCharacter(name, healthPoints, defense, weight, manaPoints) {

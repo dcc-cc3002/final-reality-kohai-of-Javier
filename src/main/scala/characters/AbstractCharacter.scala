@@ -1,5 +1,7 @@
 package characters
-import exceptions.{Require, InvalidStatException, InvalidTargetException}
+
+import exceptions.spellexceptions.InvalidTargetException
+import exceptions.{Require, InvalidStatException}
 
 /** Abstract class for a generic character.
  * @param name The name of the character. It must be non-empty

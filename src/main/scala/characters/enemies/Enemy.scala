@@ -1,7 +1,8 @@
 package characters.enemies
 
 import characters._
-import exceptions.{Require, SameTypeException, InvalidTargetException}
+import exceptions.spellexceptions.InvalidTargetException
+import exceptions.{Require, SameTypeException}
 
 /** The class for an enemy.
  * An enemy is a character opposing to the player's party.

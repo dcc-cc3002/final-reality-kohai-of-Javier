@@ -14,19 +14,14 @@ import scala.collection.mutable.ArrayBuffer
  * @param enemyList The list of enemies to be added to the game.
  * */
 class GameController(private[controller] val characterList: List[WCharacter], private[controller] val enemyList: List[TEnemy]) {
-  // Current game state
-  private[controller] var state: GameState = _
-  private[controller] var turnProgrammer: TProgrammer = _
-  private[controller] var playerParty: TParty = _
 
-  println(characterList.size)
   if(characterList.size != 3)
     throw new Exception("Error: The player must start with exactly 3 characters.")
   if(enemyList.size < 1)
     throw new Exception("Error: The game must be initialized with at leas one enemy.")
 
-  turnProgrammer = new Programmer
-  playerParty = new Party
+  private[controller] var turnProgrammer: TProgrammer = new Programmer
+  private[controller] var playerParty: TParty = new Party
   for(char <- characterList) {
     turnProgrammer.addCharacter(char)
     playerParty.addCharacter(char)
@@ -34,7 +29,7 @@ class GameController(private[controller] val characterList: List[WCharacter], pr
   for(char <- enemyList)
     turnProgrammer.addCharacter(char)
 
-  state = new TurnProgramming
+  private[controller] var state: GameState = new TurnProgramming
 
   /** It updates the state of the controller */
   private[controller] def update(): Unit = state.update(this)

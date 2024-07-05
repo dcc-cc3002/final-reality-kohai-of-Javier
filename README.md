@@ -79,6 +79,13 @@ The turn scheduler is implemented in the Assigner class, which extends the Progr
 
 A game is controlled by the game controller implementing the State Design Pattern. The game controller contains the turn programmer of the game and a variable with the current state of the game.
 
+A controller can, among other things:
+
+* Initialize the game in the constructor method.
+* End the game.
+* Show whether the game is finished with the ***isFinished*** method.
+* Show the result of the game with the ***win*** and ***lose*** methods.
+
 #### States
 
 Each phase of the game is modelled using states. Each time an event happens, its "update" method is called for the game controller to change its state if necessary.

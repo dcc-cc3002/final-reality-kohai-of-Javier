@@ -1,8 +1,7 @@
-package controller.states
+package controller.states.magicalstates
 
-import characters.TCharacter
 import characters.magicalcharacters.{MagicalCharacter, WhiteMage}
-import controller.states.magicalstates.ChoosingSpell
+import controller.states.AbstractGameStateTest
 import spells.Healing
 
 class ChoosingSpellTest extends AbstractGameStateTest {

@@ -1,8 +1,7 @@
-package controller.states
+package controller.states.enemystates
 
 import characters.enemies.{Enemy, TEnemy}
-import characters.{TCharacter, Warrior}
-import controller.states.enemystates.ApplyingEffects
+import controller.states.AbstractGameStateTest
 
 class ApplyingEffectsTest extends AbstractGameStateTest {
 

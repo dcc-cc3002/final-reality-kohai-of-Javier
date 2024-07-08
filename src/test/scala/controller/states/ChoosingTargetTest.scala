@@ -8,13 +8,13 @@ class ChoosingTargetTest extends AbstractGameStateTest {
     controller.state = new ChoosingTarget(characters.head)
     controller.update
 
-    assert(controller.state.isChoosingTarget())
+    assert(controller.state.isChoosingTarget)
   }
 
   test("update test with target") {
-    controller.state = new ChoosingTarget(characters.head, None, Some(new Enemy("Enemy", 100, 50, 50, 50)))
+    controller.state = new ChoosingTarget(characters.head, Some(new Enemy("Enemy", 100, 50, 50, 50)))
     controller.update
 
-    assert(controller.state.isDoingAction())
+    assert(controller.state.isDoingAction)
   }
 }

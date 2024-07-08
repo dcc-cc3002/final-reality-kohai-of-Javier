@@ -1,6 +1,8 @@
 package characters.magicalcharacters
 
 import characters._
+import controller.states.GameState
+import controller.states.magicalstates.MagicalChoosingAction
 import exceptions.spellexceptions.{InsufficientManaException, NoMagicWeaponException}
 import weapons.Weapon
 import weapons.magicweapons.MagicWeapon
@@ -30,10 +32,13 @@ abstract class AbstractMagicalCharacter(name: String, healthPoints: Int, defense
      * It does nothing and the method is overriden for Magical characters.*/
     override def setMagicWeapon(newWeapon: MagicWeapon): Unit = magicWeapon = Some(newWeapon)
 
-    /** Unequip the current weapon.
+    /** Sets the state of the game controller when this character is selected to play the current turn */
+    def setState(): GameState = new MagicalChoosingAction(this)
+
+    /** Un equips the current weapon.
         If the character has no weapon, then this function has no effect.
     */
-    override def unsetWeapon: Unit = {
+    override def unsetWeapon(): Unit = {
         weapon = None
         magicWeapon = None
     }

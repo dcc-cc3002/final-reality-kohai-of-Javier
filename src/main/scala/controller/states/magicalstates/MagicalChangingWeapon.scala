@@ -1,6 +1,6 @@
 package controller.states
 
-import characters.WCharacter
+import characters.magicalcharacters.MagicalCharacter
 import controller.GameController
 import weapons.Weapon
 
@@ -9,17 +9,17 @@ import weapons.Weapon
  * @param currChar The character whose weapon is to be changed.
  * @param we Option for testing purposes
  * */
-class ChangingWeapon(currChar: WCharacter, we: Option[Weapon] = None) extends AbstractGameState {
+class MagicalChangingWeapon(currChar: MagicalCharacter, we: Option[Weapon] = None) extends AbstractGameState {
   private var weapon: Option[Weapon] = we
 
   /** Handles the input from the user. */
   override def handleInput(controller: GameController): Unit = {
     //List available weapons to the user
     //Make him/her select one of them
-    controller.showWeapons()
+    controller.showWeapons
     val userInput: Int = controller.getNumericalInput
     val weaponsArray: Array[Weapon] = controller.getWeapons
-    if(userInput >= 0 && userInput < weaponsArray.length)
+    if(userInput >= 0 && userInput < weaponsArray.size)
       weapon = Some(weaponsArray(userInput))
 
   }
@@ -32,5 +32,5 @@ class ChangingWeapon(currChar: WCharacter, we: Option[Weapon] = None) extends Ab
   }
 
   /** Returns true because this state is ChangingWeapon. */
-  override def isChangingWeapon(): Boolean = true
+  override def isMagicalChangingWeapon: Boolean = true
 }

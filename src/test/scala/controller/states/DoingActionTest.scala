@@ -18,7 +18,7 @@ class DoingActionTest extends AbstractGameStateTest {
     controller.update
 
     assertEquals(testEnemy.getHealthPoints, 0)
-    assert(controller.state.isCharacterElimination())
+    assert(controller.state.isCharacterElimination)
   }
 
   test("update test with attack that does not kill the target") {
@@ -29,6 +29,6 @@ class DoingActionTest extends AbstractGameStateTest {
     controller.update
 
     assertNotEquals(testEnemy.getHealthPoints, 0)
-    assert(controller.state.isTurnProgramming())
+    assert(controller.state.isTurnProgramming)
   }
 }

@@ -1,5 +1,6 @@
 package characters
 
+import controller.states.GameState
 import effects.TEffect
 import spells.Spell
 import weapons.Weapon
@@ -36,6 +37,9 @@ trait TCharacter {
 
     /** Getter for the maximum number of health points of the character.*/
     def getMaxHealthPoints: Int
+
+    /** Sets the state of the controller when this character is selected. */
+    def setState(): GameState
 
     /** Receive damage from a spell.*/
     def receiveMagicDamage(magicDamage: Int): Unit

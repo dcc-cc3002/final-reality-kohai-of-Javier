@@ -9,7 +9,7 @@ class ChangingWeaponTest extends AbstractGameStateTest {
     controller.state = new ChangingWeapon(characters.head)
     controller.update
 
-    assert(controller.state.isChangingWeapon())
+    assert(controller.state.isChangingWeapon)
   }
 
   test("update test with new weapon") {
@@ -17,7 +17,7 @@ class ChangingWeaponTest extends AbstractGameStateTest {
     controller.state = new ChangingWeapon(characters.head, Some(newWeapon))
     controller.update
 
-    assertEquals(characters.head, newWeapon.getOwner())
-    assert(controller.state.isChoosingAction())
+    assertEquals(characters.head, newWeapon.getOwner)
+    assert(controller.state.isChoosingAction)
   }
 }

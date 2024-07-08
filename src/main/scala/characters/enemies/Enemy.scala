@@ -1,6 +1,8 @@
 package characters.enemies
 
 import characters.{AbstractCharacter, TCharacter}
+import controller.states.GameState
+import controller.states.enemystates.ApplyingEffects
 import effects.TEffect
 import exceptions.spellexceptions.InvalidTargetException
 import exceptions.{Require, SameTypeException}
@@ -28,10 +30,13 @@ class Enemy(name: String, healthPoints: Int, private val attack: Int, defense: I
     def getAttack: Int = attack
 
     /** Getter for the default action of the enemy. */
-    def getAction(): String = action
+    def getAction: String = action
 
     /** Setter for the default action of the enemy.*/
     def setAction(str: String): Unit = action = str
+
+    /** Sets the state of the controller when this character is selected. */
+    def setState(): GameState = new ApplyingEffects(this)
 
     /** Returns the value of the action bar to be attained for the enemy to attack.*/
     def fullActionBar(): Int = weight

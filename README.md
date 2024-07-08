@@ -65,7 +65,7 @@ Magic Weapons also have magic attack points, useful for making damage with spell
 
 Each spell has its own class, that extends from an abstract spell class which contains some generic methods for executing spells. It makes it easier to add new spells.
 
-For now, spells can only consume the user's mana and augment or reduce the target's number of health points.
+There are positive spells and negative spells. The positive ones can only be thrown to allies, and the negatives can only be thrown to enemies.
 
 ### Effects
 

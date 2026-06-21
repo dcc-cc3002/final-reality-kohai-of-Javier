@@ -1,0 +1,26 @@
+package characters
+import exceptions.Require
+
+/** The class for an enemy.
+ * An enemy is a character opposing to the player's party.
+ * Each enemy has a name, health points, attack, defense and a weight
+ *
+ * @param name The name of the enemy
+ * @param healthPoints The number of health points of the enemy
+ * @param attack The attack of the enemy
+ * @param defense The defense of the enemy
+ * @param weight The weight of the enemy
+ */
+class Enemy(name: String, healthPoints: Int, private val attack: Int, defense: Int, weight: Int) extends AbstractCharacter(name, healthPoints, defense, weight) with TEnemy {
+
+    Require.Stat(attack, "attack") atLeast 1
+
+    /** Returns the number of attack points of the enemy.*/
+    def getAttack(): Int = attack
+
+    /** Returns the value of the action bar to be attained for the enemy to attack.*/
+    def fullActionBar(): Int = weight
+
+    /** Attacks another character.*/
+    def attack(other: TCharacter): Unit = other.receiveDamage(attack)
+}
